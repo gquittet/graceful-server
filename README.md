@@ -40,7 +40,10 @@
 - [Example](#example)
   - [ExpressJS](#expressjs)
   - [HTTP Server](#http-server)
-- [Options](#options)
+- [API](#api)
+  - [GracefulServer](#gracefulserver)
+  - [IGracefulServerOptions](#igracefulserveroptions)
+  - [GracefulServer Instance](#gracefulserver-instance)
 - [Integration with Docker](#integration-with-docker)
   - [HEALTH CHECK in Dockerfile](#health-check-in-dockerfile)
   - [Content of *healthcheck.js*](#content-of-healthcheckjs)
@@ -193,7 +196,19 @@ server.listen(8080, async () => {
 })
 ```
 
-## Options
+## API
+
+### GracefulServer
+
+```typescript
+((server: http.Server, options?: IGracefulServerOptions | undefined) => IGracefulServer) & typeof State
+```
+
+where `State` is an enum that contains `READY`, `SHUTTING_DOWN` and `SHUTDOWN`.
+
+### IGracefulServerOptions
+
+All of the below options are optional.
 
 | Name              |            Type            | Default |                                                      Description |
 | ----------------- | :------------------------: | :-----: | ---------------------------------------------------------------: |
@@ -201,6 +216,16 @@ server.listen(8080, async () => {
 | timeout           |           number           |  1000   | The time in milliseconds to wait before shutting down the server |
 | livenessEndpoint  |           string           |  /live  |                                            The liveness endpoint |
 | readinessEndpoint |           string           | /ready  |                                           The readiness endpoint |
+
+### GracefulServer Instance
+
+```typescript
+export default interface IGracefulServer {
+  isReady: () => Boolean
+  setReady: () => void
+  on: (name: string, callback: (...args: any[]) => void) => EventEmitter,
+}
+```
 
 ## Integration with Docker
 
