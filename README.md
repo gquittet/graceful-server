@@ -24,7 +24,7 @@
 </p>
 
 <p align="center">
-  Tiny (~5k), dependency-free Node.JS library to make your API more graceful
+  Tiny (~5k), KISS, dependency-free Node.JS library to make your API more graceful
 </p>
 
 ---
@@ -63,6 +63,10 @@
 ✔ It manages the connections of your API.
 
 ✔ It avoid boilerplate codes.
+
+✔ Dependency-free.
+
+✔ KISS code base.
 
 ## Requirements
 
