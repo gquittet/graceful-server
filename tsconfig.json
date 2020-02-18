@@ -26,7 +26,12 @@
     "esModuleInterop": true,
 
     /* Advanced Options */
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+
+    "plugins": [
+      { "transform": "typescript-transform-paths" },
+      { "transform": "typescript-transform-paths", "afterDeclarations": true }
+    ]
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "lib", "__tests__/**/*"]

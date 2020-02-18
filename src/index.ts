@@ -2,10 +2,10 @@ import { makeOptions } from '@/config'
 import GracefulServerCore from '@/core'
 import State from '@/core/state'
 import IGracefulServer from '@/interface/gracefulServer'
-import IOptions from '@/interface/options'
+import IGracefulServerOptions from '@/interface/gracefulServerOptions'
 import http from 'http'
 
-const GracefulServer = (server: http.Server, options: IOptions): IGracefulServer => {
+const buildGracefulServer = (server: http.Server, options?: IGracefulServerOptions): IGracefulServer => {
   makeOptions(options)
   const gracefulServer = GracefulServerCore(server).init()
   return {
@@ -15,6 +15,6 @@ const GracefulServer = (server: http.Server, options: IOptions): IGracefulServer
   }
 }
 
-Object.assign(GracefulServer, State)
+const GracefulServer = Object.assign(buildGracefulServer, State)
 
 export default GracefulServer

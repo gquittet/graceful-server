@@ -1,6 +1,5 @@
-// @ts-nocheck
 import http from 'http'
-import GracefulServer from '../lib'
+import GracefulServer from '..'
 
 const server = http.createServer((req, res) => {
   if (req.url === '/test' && req.method === 'GET') {

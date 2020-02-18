@@ -1,3 +1,4 @@
+import IGracefulServerOptions from '@/interface/gracefulServerOptions'
 import IOptions from '@/interface/options'
 
 const options: IOptions = {
@@ -8,7 +9,7 @@ const options: IOptions = {
 }
 let canOverride = true
 
-export const makeOptions = (newOptions?: IOptions) => {
+export const makeOptions = (newOptions?: IGracefulServerOptions) => {
   if (canOverride) {
     Object.freeze(Object.assign(options, newOptions))
     canOverride = false
