@@ -11,7 +11,9 @@ const onRequest = (serverStatus: IStatus) => (req: http.IncomingMessage, res: ht
     res.statusCode = 200
     res.setHeader('Content-Type', 'application/json')
     return res.end(JSON.stringify({ uptime: process.uptime() | 0 }))
-  } else if (req.url === readinessEndpoint && req.method === 'GET') {
+  }
+
+  if (req.url === readinessEndpoint && req.method === 'GET') {
     if (serverStatus.isReady()) {
       res.statusCode = 200
       res.setHeader('Content-Type', 'application/json')
