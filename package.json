@@ -1,0 +1,88 @@
+{
+  "name": "@gquittet/graceful-server",
+  "description": "Tiny (~5k), dependency-free Node.JS library to make your API more graceful",
+  "author": {
+    "name": "Guillaume Quittet",
+    "email": "guillaume.quittet@gmail.com",
+    "url": "https://github.com/gquittet"
+  },
+  "homepage": "https://github.com/gquittet/graceful-server#readme",
+  "bugs": {
+    "url": "https://github.com/gquittet/graceful-server/issues",
+    "email": "guillaume.quittet@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:gquittet/graceful-server.git"
+  },
+  "engines": {
+    "node": ">=8"
+  },
+  "keywords": [
+    "api",
+    "http",
+    "server",
+    "graceful",
+    "connection",
+    "gracefulserver"
+  ],
+  "license": "MIT",
+  "version": "0.0.1",
+  "main": "./lib/index.js",
+  "types": "./lib/types/index.d.ts",
+  "scripts": {
+    "clean": "rimraf lib/",
+    "type-check": "tsc --noEmit",
+    "type-check:watch": "npm run type-check -- --watch",
+    "build": "npm run build:types && npm run bundle",
+    "build:types": "tsc --emitDeclarationOnly",
+    "bundle": "webpack",
+    "lint": "eslint src/**/*.ts",
+    "test": "NODE_ENV=test jest",
+    "test:coverage": "NODE_ENV=test jest --coverage",
+    "prepublishOnly": "npm run clean && npm run lint && npm run build"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.8.4",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/plugin-proposal-object-rest-spread": "^7.8.3",
+    "@babel/preset-env": "^7.8.4",
+    "@babel/preset-typescript": "^7.8.3",
+    "@types/express": "^4.17.2",
+    "@types/jest": "^25.1.2",
+    "@types/node": "^13.7.0",
+    "@types/stoppable": "^1.1.0",
+    "@typescript-eslint/eslint-plugin": "^2.19.0",
+    "@typescript-eslint/parser": "^2.19.0",
+    "babel-loader": "^8.0.6",
+    "babel-plugin-module-resolver": "^4.0.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-import-resolver-babel-module": "^5.1.2",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-module-resolver": "^0.16.0",
+    "eslint-plugin-node": "^11.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "esm": "^3.2.25",
+    "fork-ts-checker-webpack-plugin": "^4.0.3",
+    "husky": "^4.2.1",
+    "jest": "^25.1.0",
+    "prettier": "^1.19.1",
+    "pretty-quick": "^2.0.1",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^25.2.0",
+    "ts-node": "^8.6.2",
+    "typescript": "^3.7.5",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  }
+}

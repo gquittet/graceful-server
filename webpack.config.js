@@ -1,0 +1,29 @@
+const path = require('path')
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
+
+module.exports = {
+  entry: path.resolve(__dirname, 'src/index'),
+  mode: 'production',
+  target: 'node',
+  output: {
+    path: path.resolve(__dirname, 'lib'),
+    filename: 'index.js',
+    library: 'gracefulServer',
+    libraryExport: 'default',
+    libraryTarget: 'commonjs2'
+  },
+  resolve: {
+    extensions: ['.ts', '.js', '.json']
+  },
+  module: {
+    rules: [
+      {
+        // Include ts, tsx, js, and jsx files.
+        test: /\.(ts|js)$/,
+        exclude: /node_modules|__tests__/,
+        loader: 'babel-loader'
+      }
+    ]
+  },
+  plugins: [new ForkTsCheckerWebpackPlugin()]
+}
