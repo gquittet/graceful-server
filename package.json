@@ -32,10 +32,10 @@
   "types": "./lib/types/index.d.ts",
   "scripts": {
     "clean": "rimraf lib/",
-    "type-check": "tsc --noEmit",
+    "type-check": "ttsc --noEmit",
     "type-check:watch": "npm run type-check -- --watch",
     "build": "npm run build:types && npm run bundle",
-    "build:types": "tsc --emitDeclarationOnly",
+    "build:types": "ttsc --emitDeclarationOnly",
     "bundle": "webpack",
     "lint": "eslint src/**/*.ts",
     "test": "NODE_ENV=test jest",
@@ -76,7 +76,9 @@
     "rimraf": "^3.0.2",
     "ts-jest": "^25.2.0",
     "ts-node": "^8.6.2",
+    "ttypescript": "^1.5.10",
     "typescript": "^3.7.5",
+    "typescript-transform-paths": "^1.1.14",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10"
   },
