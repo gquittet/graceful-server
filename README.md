@@ -34,6 +34,9 @@
 - [Installation](#installation)
   - [NPM](#npm)
   - [Yarn](#yarn)
+- [Endpoint](#endpoint)
+  - [<code>/live</code>](#live)
+  - [<code>/ready</code>](#ready)
 - [Example](#example)
   - [ExpressJS](#expressjs)
   - [HTTP Server](#http-server)
@@ -56,6 +59,8 @@
 
 ✔ It manages the connections of your API.
 
+✔ It avoid boilerplate codes.
+
 ## Requirements
 
 ✔ NodeJS >= 8
@@ -74,23 +79,75 @@ npm install --save @gquittet/graceful-server
 yarn add @gquittet/graceful-server
 ```
 
+## Endpoint
+
+Below you can find the default endpoint but you can setup them. To do that, check out the [Options](#options) part.
+
+<a name="lightship-behaviour-live"></a>
+### <code>/live</code>
+
+The endpoint responds:
+
+* `200` status code with the uptime of the server in second.
+
+```json
+{ "uptime": 42 }
+```
+
+Used to configure liveness probe.
+
+<a name="lightship-behaviour-ready"></a>
+### <code>/ready</code>
+
+The endpoint responds:
+
+* `200` status code if the server is ready.
+
+```json
+{ "status": "ready" }
+```
+
+* `503` status code with an empty response if the server is not ready (started, shutting down, etc).
+
 ## Example
 
 ### ExpressJS
 
 ```javascript
 const express = require('express')
+const helmet = require('helmet')
 const http = require('http')
 const GracefulServer = require('@gquittet/graceful-server')
 const { connectToDb, closeDbConnection } = require('./db')
+
 const app = express()
+app.disable('x-powered-by')
+
+// Exclude the liveness and readiness endpoints from express
+app.get('/live', () => {})
+app.get('/ready', () => {})
+
+// Add below your express middleware
+app.use(helmet())
 
 app.get('/test', (_, res) => {
-  return res.send({ uptime: process.uptime() | 0 })
+    return res.send({ uptime: process.uptime() | 0 })
 })
 
 const server = http.createServer(app)
 const gracefulServer = GracefulServer(server, { closePromises: [closeDbConnection] })
+
+gracefulServer.on(GracefulServer.READY, () => {
+  console.log('Server is ready')
+})
+
+gracefulServer.on(GracefulServer.SHUTTING_DOWN, () => {
+  console.log('Server is shutting down')
+})
+
+gracefulServer.on(GracefulServer.SHUTDOWN, error => {
+console.log('Server is down because of', error.message)
+  })
 
 server.listen(8080, async () => {
   await connectToDb()
@@ -268,7 +325,7 @@ livenessProbe:
 startupProbe:
   httpGet:
     path: /live
-    port: 9000
+    port: 8080
   failureThreshold: 3
   initialDelaySeconds: 10
   periodSeconds: 30
@@ -282,9 +339,19 @@ startupProbe:
 
 ★ [Lightship](https://github.com/gajus/lightship)
 
-★ [Bret Fisher](https://github.com/BretFisher)
+★ [Stoppable](https://github.com/hunterloftis/stoppable)
+
+★ [http-terminator](https://github.com/gajus/http-terminator)
+
+★ [Bret Fisher](https://github.com/BretFisher) for its great articles and videos
+
+★ [IBM documentation](https://cloud.ibm.com/docs/node?topic=nodejs-node-healthcheck)
 
 ★ [Node HTTP documentation](https://nodejs.org/api/http.html)
+
+★ [Cloud Health](https://github.com/CloudNativeJS/cloud-health)
+
+★ [Cloud Health Connect](https://github.com/CloudNativeJS/cloud-health-connect)
 
 ## Donate
 
