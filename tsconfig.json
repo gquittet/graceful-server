@@ -22,8 +22,8 @@
       "@/*": ["src/*"],
       "test/*": ["__tests__/*"]
     },
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
+    // "allowSyntheticDefaultImports": true,
+    // "esModuleInterop": true,
 
     /* Advanced Options */
     "forceConsistentCasingInFileNames": true,

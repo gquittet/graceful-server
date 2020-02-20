@@ -1,5 +1,6 @@
 const path = require('path')
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
+const AddModuleExportsPlugin = require('add-module-exports-webpack-plugin')
 
 module.exports = {
   entry: path.resolve(__dirname, 'src/index'),
@@ -8,8 +9,6 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'lib'),
     filename: 'index.js',
-    library: 'gracefulServer',
-    libraryExport: 'default',
     libraryTarget: 'commonjs2'
   },
   resolve: {
@@ -25,5 +24,5 @@ module.exports = {
       }
     ]
   },
-  plugins: [new ForkTsCheckerWebpackPlugin()]
+  plugins: [new ForkTsCheckerWebpackPlugin(), new AddModuleExportsPlugin()]
 }

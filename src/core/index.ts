@@ -2,7 +2,7 @@ import ICore from '@/interface/core'
 import init from '@/util/init'
 import shutdown from '@/util/shutdown'
 import { EventEmitter } from 'events'
-import http from 'http'
+import * as http from 'http'
 import ImprovedServer from './improvedServer'
 import Status from './status'
 
