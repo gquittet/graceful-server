@@ -1,8 +1,8 @@
 enum State {
-  'NOT_READY' = 'NOT_READY',
+  'STARTING' = 'STARTING',
   'READY' = 'READY',
-  'SHUTDOWN' = 'SHUTDOWN',
-  'SHUTTING_DOWN' = 'SHUTTING_DOWN'
+  'SHUTTING_DOWN' = 'SHUTTING_DOWN',
+  'SHUTDOWN' = 'SHUTDOWN'
 }
 
 export default State

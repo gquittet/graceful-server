@@ -3,7 +3,7 @@ import { EventEmitter } from 'events'
 import State from './state'
 
 const Status = (eventEmitter: EventEmitter): IStatus => {
-  let _currentState: State = State.NOT_READY
+  let _currentState: State = State.STARTING
   return {
     set: function(state: State, body?: Object | string): IStatus {
       _currentState = state
