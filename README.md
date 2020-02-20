@@ -208,7 +208,7 @@ server.listen(8080, async () => {
 ((server: http.Server, options?: IGracefulServerOptions | undefined) => IGracefulServer) & typeof State
 ```
 
-where `State` is an enum that contains `READY`, `SHUTTING_DOWN` and `SHUTDOWN`.
+where `State` is an enum that contains, `STARTING`, `READY`, `SHUTTING_DOWN` and `SHUTDOWN`.
 
 ### IGracefulServerOptions
 
