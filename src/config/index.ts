@@ -4,6 +4,7 @@ import IOptions from '@/interface/options'
 const options: IOptions = {
   closePromises: [],
   timeout: 1000,
+  healthCheck: true,
   livenessEndpoint: '/live',
   readinessEndpoint: '/ready'
 }
