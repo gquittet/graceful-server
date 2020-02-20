@@ -1,7 +1,7 @@
 import ImprovedServer from '@/interface/improvedServer'
 import IStatus from '@/interface/status'
 import onRequest from '@/util/onRequest'
-import http from 'http'
+import * as http from 'http'
 import SocketsPool from './socketsPool'
 
 const improvedServer = (server: http.Server, serverStatus: IStatus): ImprovedServer => {

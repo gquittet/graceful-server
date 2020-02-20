@@ -1,4 +1,4 @@
-import net from 'net'
+import * as net from 'net'
 
 const SocketsPool = (sockets?: Set<net.Socket>) => {
   const _sockets = sockets || new Set<net.Socket>()

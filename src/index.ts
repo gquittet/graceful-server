@@ -3,7 +3,7 @@ import GracefulServerCore from '@/core'
 import State from '@/core/state'
 import IGracefulServer from '@/interface/gracefulServer'
 import IGracefulServerOptions from '@/interface/gracefulServerOptions'
-import http from 'http'
+import * as http from 'http'
 
 const buildGracefulServer = (server: http.Server, options?: IGracefulServerOptions): IGracefulServer => {
   makeOptions(options)
