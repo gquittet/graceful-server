@@ -1,3 +1,4 @@
+import config from '@/config'
 import ImprovedServer from '@/interface/improvedServer'
 import IStatus from '@/interface/status'
 import onRequest from '@/util/onRequest'
@@ -5,6 +6,7 @@ import * as http from 'http'
 import SocketsPool from './socketsPool'
 
 const improvedServer = (server: http.Server, serverStatus: IStatus): ImprovedServer => {
+  const { healthCheck } = config
   const socketsPool = SocketsPool()
   const secureSocketsPool = SocketsPool()
   let stopping = false
@@ -17,7 +19,9 @@ const improvedServer = (server: http.Server, serverStatus: IStatus): ImprovedSer
   // Remove it from server
   server.removeAllListeners('request')
   // Setup my default listener
-  server.on('request', onRequest(serverStatus))
+  if (healthCheck) {
+    server.on('request', onRequest(serverStatus))
+  }
 
   // Add the user listeners
   listeners.forEach((listener: any) =>

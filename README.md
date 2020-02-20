@@ -88,7 +88,7 @@ yarn add @gquittet/graceful-server
 
 ## Endpoint
 
-Below you can find the default endpoint but you can setup them. To do that, check out the [Options](#options) part.
+Below you can find the default endpoint but you can setup or disable them. To do that, check out the [Options](#options) part.
 
 <a name="lightship-behaviour-live"></a>
 ### <code>/live</code>
@@ -218,6 +218,7 @@ All of the below options are optional.
 | ----------------- | :------------------------: | :-----: | ---------------------------------------------------------------: |
 | closePromises     | (() => Promise<unknown>)[] |   []    |                    The functions to run when the API is stopping |
 | timeout           |           number           |  1000   | The time in milliseconds to wait before shutting down the server |
+| healthCheck       |          boolean           |  true   |    Enable/Disable the default endpoints (liveness and readiness) |
 | livenessEndpoint  |           string           |  /live  |                                            The liveness endpoint |
 | readinessEndpoint |           string           | /ready  |                                           The readiness endpoint |
 
