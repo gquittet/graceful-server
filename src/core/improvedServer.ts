@@ -1,6 +1,7 @@
 import config from '@/config'
 import ImprovedServer from '@/interface/improvedServer'
 import IStatus from '@/interface/status'
+import express from '@/util/express'
 import onRequest from '@/util/onRequest'
 import * as http from 'http'
 import SocketsPool from './socketsPool'
@@ -13,6 +14,11 @@ const improvedServer = (server: http.Server, serverStatus: IStatus): ImprovedSer
 
   server.on('connection', socketsPool.onConnection)
   server.on('secureConnection', secureSocketsPool.onConnection)
+
+  // Identify the framework to apply patches
+  server.listeners('request').forEach((listener: any) => {
+    if (express.validate(listener)) express.patch()
+  })
 
   // Save user listeners
   const listeners = server.listeners('request')
