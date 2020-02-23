@@ -128,21 +128,15 @@ const GracefulServer = require('@gquittet/graceful-server')
 const { connectToDb, closeDbConnection } = require('./db')
 
 const app = express()
-app.disable('x-powered-by')
-
-// Exclude the liveness and readiness endpoints from express
-app.get('/live', () => {})
-app.get('/ready', () => {})
+const server = http.createServer(app)
+const gracefulServer = GracefulServer(server, { closePromises: [closeDbConnection] })
 
 // Add below your express middleware
 app.use(helmet())
 
 app.get('/test', (_, res) => {
-    return res.send({ uptime: process.uptime() | 0 })
+  return res.send({ uptime: process.uptime() | 0 })
 })
-
-const server = http.createServer(app)
-const gracefulServer = GracefulServer(server, { closePromises: [closeDbConnection] })
 
 gracefulServer.on(GracefulServer.READY, () => {
   console.log('Server is ready')
@@ -153,8 +147,8 @@ gracefulServer.on(GracefulServer.SHUTTING_DOWN, () => {
 })
 
 gracefulServer.on(GracefulServer.SHUTDOWN, error => {
-console.log('Server is down because of', error.message)
-  })
+  console.log('Server is down because of', error.message)
+})
 
 server.listen(8080, async () => {
   await connectToDb()
