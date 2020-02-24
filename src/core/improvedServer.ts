@@ -15,17 +15,18 @@ const improvedServer = (server: http.Server, serverStatus: IStatus): ImprovedSer
   server.on('connection', socketsPool.onConnection)
   server.on('secureConnection', secureSocketsPool.onConnection)
 
-  // Identify the framework to apply patches
-  server.listeners('request').forEach((listener: any) => {
-    if (express.validate(listener)) express.patch()
-  })
-
   // Save user listeners
   const listeners = server.listeners('request')
   // Remove it from server
   server.removeAllListeners('request')
+
   // Setup my default listener
   if (healthCheck) {
+    // Identify the framework to apply patches
+    listeners.forEach((listener: any) => {
+      if (express.validate(listener)) express.patch(listener)
+    })
+
     server.on('request', onRequest(serverStatus))
   }
 
