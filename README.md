@@ -120,6 +120,11 @@ The endpoint responds:
 
 ### ExpressJS
 
+The library works with the default HTTP NodeJS object. So, when you're using Express you can't pass
+directly the `app` object from Express. But, you can easily generate an HTTP NodeJS object from the `app` object.
+
+Just follow the bottom example:
+
 ```javascript
 const express = require('express')
 const helmet = require('helmet')
@@ -131,7 +136,6 @@ const app = express()
 const server = http.createServer(app)
 const gracefulServer = GracefulServer(server, { closePromises: [closeDbConnection] })
 
-// Add below your express middleware
 app.use(helmet())
 
 app.get('/test', (_, res) => {
@@ -155,6 +159,10 @@ server.listen(8080, async () => {
   gracefulServer.setReady()
 })
 ```
+
+As you can see, we're using the `app` object from Express to set up the endpoints and middleware.
+But it can't listen (you can do it but `app` hasn't any liveness or readiness). The listening
+of HTTP calls need to be done by the default NodeJS HTTP object (aka ***server***).
 
 ### HTTP Server
 
