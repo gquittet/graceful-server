@@ -2,6 +2,8 @@ import * as express from 'express'
 
 const validate = (requestListener: express.Express) =>
   requestListener &&
+  requestListener._router &&
+  Array.isArray(requestListener._router.stack) &&
   requestListener.request &&
   requestListener.response &&
   requestListener === requestListener.request.app &&
