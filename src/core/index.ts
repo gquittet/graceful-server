@@ -12,10 +12,10 @@ const core = (server: http.Server): ICore => {
   const _server = ImprovedServer(server, status)
   return {
     status,
-    init: function() {
+    init: function () {
       return init(this)
     },
-    shutdown: function(type: string, value: number, error?: Error) {
+    shutdown: function (type: string, value: number, error?: Error) {
       return shutdown(_server, this)(type, value, error)
     },
     on: (name: string, callback: (...args: any[]) => void) => _emitter.on(name, callback)
