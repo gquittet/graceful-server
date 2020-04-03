@@ -39,6 +39,7 @@
   - [<code>/ready</code>](#ready)
 - [Example](#example)
   - [ExpressJS](#expressjs)
+  - [Fastify](#fastify)
   - [HTTP Server](#http-server)
 - [API](#api)
   - [GracefulServer](#gracefulserver)
@@ -46,7 +47,7 @@
   - [GracefulServer Instance](#gracefulserver-instance)
 - [Integration with Docker](#integration-with-docker)
   - [HEALTH CHECK in Dockerfile](#health-check-in-dockerfile)
-  - [Content of *healthcheck.js*](#content-of-healthcheckjs)
+  - [Content of _healthcheck.js_](#content-of-healthcheckjs)
   - [Example of Dockerfile](#example-of-dockerfile)
 - [Integration with Kubernetes](#integration-with-kubernetes)
 - [Thanks](#thanks)
@@ -91,11 +92,12 @@ yarn add @gquittet/graceful-server
 Below you can find the default endpoint but you can setup or disable them. To do that, check out the [Options](#options) part.
 
 <a name="lightship-behaviour-live"></a>
+
 ### <code>/live</code>
 
 The endpoint responds:
 
-* `200` status code with the uptime of the server in second.
+- `200` status code with the uptime of the server in second.
 
 ```json
 { "uptime": 42 }
@@ -104,17 +106,18 @@ The endpoint responds:
 Used to configure liveness probe.
 
 <a name="lightship-behaviour-ready"></a>
+
 ### <code>/ready</code>
 
 The endpoint responds:
 
-* `200` status code if the server is ready.
+- `200` status code if the server is ready.
 
 ```json
 { "status": "ready" }
 ```
 
-* `503` status code with an empty response if the server is not ready (started, shutting down, etc).
+- `503` status code with an empty response if the server is not ready (started, shutting down, etc).
 
 ## Example
 
@@ -162,7 +165,47 @@ server.listen(8080, async () => {
 
 As you can see, we're using the `app` object from Express to set up the endpoints and middleware.
 But it can't listen (you can do it but `app` hasn't any liveness or readiness). The listening
-of HTTP calls need to be done by the default NodeJS HTTP object (aka ***server***).
+of HTTP calls need to be done by the default NodeJS HTTP object (aka **_server_**).
+
+### Fastify
+
+```javascript
+const fastify = require('fastify')({ logger: true })
+const GracefulServer = require('@gquittet/graceful-server')
+
+const gracefulServer = GracefulServer(fastify.server)
+
+gracefulServer.on(GracefulServer.READY, () => {
+  console.log('Server is ready')
+})
+
+gracefulServer.on(GracefulServer.SHUTTING_DOWN, () => {
+  console.log('Server is shutting down'
+})
+
+
+gracefulServer.on(GracefulServer.SHUTDOWN, error => {
+  console.log('Server is down because of', error.message)
+})
+
+// Declare a route
+fastify.get('/', async (request, reply) => {
+  return { hello: 'world' }
+})
+
+// Run the server!
+const start = async () => {
+  try {
+    await fastify.listen(3000)
+    fastify.log.info(`server listening on ${fastify.server.address().port}`)
+    gracefulServer.setReady()
+  } catch (err) {
+    fastify.log.error(err)
+    process.exit(1)
+  }
+}
+start()
+```
 
 ### HTTP Server
 
@@ -207,7 +250,7 @@ server.listen(8080, async () => {
 ### GracefulServer
 
 ```typescript
-((server: http.Server, options?: IGracefulServerOptions | undefined) => IGracefulServer) & typeof State
+;((server: http.Server, options?: IGracefulServerOptions | undefined) => IGracefulServer) & typeof State
 ```
 
 where `State` is an enum that contains, `STARTING`, `READY`, `SHUTTING_DOWN` and `SHUTDOWN`.
@@ -230,7 +273,7 @@ All of the below options are optional.
 export default interface IGracefulServer {
   isReady: () => Boolean
   setReady: () => void
-  on: (name: string, callback: (...args: any[]) => void) => EventEmitter,
+  on: (name: string, callback: (...args: any[]) => void) => EventEmitter
 }
 ```
 
@@ -242,7 +285,7 @@ export default interface IGracefulServer {
 HEALTHCHECK --interval=30s --timeout=5s --start-period=10s CMD ["node healthcheck.js"]
 ```
 
-### Content of *healthcheck.js*
+### Content of _healthcheck.js_
 
 ```javascript
 const http = require('http')
@@ -267,7 +310,6 @@ request.on('error', err => {
 
 request.end()
 ```
-
 
 ### Example of Dockerfile
 
