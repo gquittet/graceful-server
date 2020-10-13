@@ -1,4 +1,4 @@
-import http from 'http'
+import * as http from 'http'
 import GracefulServer from '..'
 
 const server = http.createServer((req, res) => {
@@ -37,11 +37,12 @@ gracefulServer.on(GracefulServer.SHUTTING_DOWN, () => {
   console.log('Server is shutting down')
 })
 
-gracefulServer.on(GracefulServer.SHUTDOWN, error => {
+gracefulServer.on(GracefulServer.SHUTDOWN, (error: Error) => {
   console.log('Server is down because of', error.message)
 })
 
 server.listen(8080, async () => {
+  console.log('Server is starting')
   await connectToDb()
   gracefulServer.setReady()
 })
