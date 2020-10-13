@@ -271,7 +271,7 @@ All of the below options are optional.
 
 ```typescript
 export default interface IGracefulServer {
-  isReady: () => Boolean
+  isReady: () => boolean
   setReady: () => void
   on: (name: string, callback: (...args: any[]) => void) => EventEmitter
 }

@@ -4,5 +4,5 @@ export default interface IStatus {
   set: (status: State, error?: Error) => IStatus
   get: () => State
   setReady: () => void
-  isReady: () => Boolean
+  isReady: () => boolean
 }
