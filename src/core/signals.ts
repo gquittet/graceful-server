@@ -1,3 +1,4 @@
+/* global NodeJS */
 const signals: { type: NodeJS.Signals | 'uncaughtException'; code: number }[] = [
   { type: 'SIGHUP', code: 1 },
   { type: 'SIGBREAK', code: 1 },
