@@ -16,7 +16,7 @@
     "url": "git@github.com:gquittet/graceful-server.git"
   },
   "engines": {
-    "node": ">=8"
+    "node": ">=10"
   },
   "keywords": [
     "api",

@@ -71,7 +71,7 @@
 
 ## Requirements
 
-✔ NodeJS >= 8
+✔ NodeJS >= 10
 
 ## Installation
 
