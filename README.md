@@ -180,9 +180,8 @@ gracefulServer.on(GracefulServer.READY, () => {
 })
 
 gracefulServer.on(GracefulServer.SHUTTING_DOWN, () => {
-  console.log('Server is shutting down'
+  console.log('Server is shutting down')
 })
-
 
 gracefulServer.on(GracefulServer.SHUTDOWN, error => {
   console.log('Server is down because of', error.message)
