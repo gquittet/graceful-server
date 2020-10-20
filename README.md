@@ -24,7 +24,7 @@
 </p>
 
 <p align="center">
-  Tiny (~5k), KISS, dependency-free Node.JS library to make your API more graceful
+  Tiny (~5k), KISS, dependency-free Node.JS library to make your Rest API graceful.
 </p>
 
 ---
@@ -72,7 +72,7 @@
 
 ## Requirements
 
-✔ NodeJS >= 10
+✔ NodeJS >= 10.13.0
 
 ## Installation
 
