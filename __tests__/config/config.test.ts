@@ -13,4 +13,22 @@ describe('config', () => {
     const { timeout } = defaultConfig
     expect(timeout).toBe(1000)
   })
+
+  it('should have the health check enabled by default', () => {
+    expect.assertions(1)
+    const { healthCheck } = defaultConfig
+    expect(healthCheck).toBe(true)
+  })
+
+  it('should have a default liveness endpoint as /live', () => {
+    expect.assertions(1)
+    const { livenessEndpoint } = defaultConfig
+    expect(livenessEndpoint).toBe('/live')
+  })
+
+  it('should have a default readiness endpoint as /ready', () => {
+    expect.assertions(1)
+    const { readinessEndpoint } = defaultConfig
+    expect(readinessEndpoint).toBe('/ready')
+  })
 })
