@@ -40,6 +40,7 @@
 - [Example](#example)
   - [ExpressJS](#expressjs)
   - [Fastify](#fastify)
+  - [Koa](#koa)
   - [HTTP Server](#http-server)
 - [API](#api)
   - [GracefulServer](#gracefulserver)
@@ -205,6 +206,50 @@ const start = async () => {
 }
 start()
 ```
+
+### Koa
+
+```javascript
+const GracefulServer = require('@gquittet/graceful-server')
+const Koa = require('koa')
+const http = require('http')
+const Router = require('koa-router')
+
+const app = new Koa()
+const router = new Router()
+
+const server = http.createServer(app.callback())
+gracefulServer = GracefulServer(server)
+
+router.get('/test')
+app.use(router.routes())
+
+// response
+app.use(ctx => {
+  ctx.body = 'Hello Koa'
+})
+
+gracefulServer.on(GracefulServer.READY, () => {
+  console.log('Server is ready')
+})
+
+gracefulServer.on(GracefulServer.SHUTTING_DOWN, () => {
+  console.log('Server is shutting down')
+})
+
+gracefulServer.on(GracefulServer.SHUTDOWN, error => {
+  console.log('Server is down because of', error.message)
+})
+
+server.listen(8080, async () => {
+  await connectToDb()
+  gracefulServer.setReady()
+})
+```
+
+As you can see, we're using the `app` object from Express to set up the endpoints and middleware.
+But it can't listen (you can do it but `app` hasn't any liveness or readiness). The listening
+of HTTP calls need to be done by the default NodeJS HTTP object (aka **_server_**).
 
 ### HTTP Server
 
