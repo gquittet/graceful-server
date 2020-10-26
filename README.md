@@ -50,6 +50,8 @@
   - [HEALTH CHECK in Dockerfile](#health-check-in-dockerfile)
   - [Content of _healthcheck.js_](#content-of-healthcheckjs)
   - [Example of Dockerfile](#example-of-dockerfile)
+    - [POC level](#poc-level)
+    - [Company level](#company-level)
 - [Integration with Kubernetes](#integration-with-kubernetes)
 - [Thanks](#thanks)
 - [Donate](#donate)
@@ -357,6 +359,26 @@ request.end()
 
 ### Example of Dockerfile
 
+#### POC level
+
+```Dockerfile
+FROM node:12-slim
+
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+
+RUN npm ci --only=production
+
+COPY . .
+
+EXPOSE 8080
+HEALTHCHECK --interval=30s --timeout=5s --start-period=10s CMD ["node healthcheck.js"]
+CMD [ "node", "server.js" ]
+```
+
+#### Company level
+
 ```Dockerfile
 FROM node:12-slim as base
 ENV NODE_ENV=production
@@ -461,7 +483,7 @@ startupProbe:
 
 ★ [http-terminator](https://github.com/gajus/http-terminator)
 
-★ [Bret Fisher](https://github.com/BretFisher) for its great articles and videos
+★ [Bret Fisher](https://github.com/BretFisher) for his great articles and videos
 
 ★ [IBM documentation](https://cloud.ibm.com/docs/node?topic=nodejs-node-healthcheck)
 
