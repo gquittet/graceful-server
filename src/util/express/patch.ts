@@ -1,19 +1,20 @@
 import config from '@/config'
-import { Express } from 'express'
 
 const { livenessEndpoint, readinessEndpoint } = config
 
 const patch = {
-  apply: (app: Express) => {
-    // Add empty endpoints for liveness and readiness in express.
-    // With this technique, express will recognize the liveness and readiness endpoint.
-    // But it will do nothing.
-    app.get(livenessEndpoint, () => {})
-    app.get(readinessEndpoint, () => {})
-    // Push these endpoints at the beginning of the middleware stack to avoid
+  apply: (app: any) => {
+    // Exclude endpoints for liveness and readiness in express.
+    // With this technique, the endpoints liveness and readiness will be callable.
+    // But express will do nothing.
+    // Thus, we avoid this kind of error:
     // Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client.
-    app._router.stack.unshift(app._router.stack.pop())
-    app._router.stack.unshift(app._router.stack.pop())
+    const oldExpressHandler = app.handle
+    app.handle = function (req: any, res: any, next: any) {
+      if (req.url !== livenessEndpoint && req.url !== readinessEndpoint) {
+        oldExpressHandler.call(app, req, res, next)
+      }
+    }
   }
 }
 
