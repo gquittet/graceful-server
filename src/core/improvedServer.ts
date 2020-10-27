@@ -1,10 +1,11 @@
 import config from '@/config'
 import ImprovedServer from '@/interface/improvedServer'
 import IStatus from '@/interface/status'
-import express from '@/util/express'
 import onRequest from '@/util/onRequest'
 import * as http from 'http'
 import SocketsPool from './socketsPool'
+
+const { livenessEndpoint, readinessEndpoint } = config
 
 const improvedServer = (server: http.Server, serverStatus: IStatus): ImprovedServer => {
   const { healthCheck } = config
@@ -17,30 +18,40 @@ const improvedServer = (server: http.Server, serverStatus: IStatus): ImprovedSer
 
   // Save user listeners
   const listeners = server.listeners('request')
-  // Remove it from server
+  // Remove them from server
   server.removeAllListeners('request')
 
-  // Setup my default listener
+  // Setup the health check endpoints if health checks are enabled
   if (healthCheck) {
-    // Identify the framework to apply patches
-    listeners.forEach((listener: any) => {
-      if (express.validate(listener)) express.patch(listener)
-    })
-
+    // Add health checks endpoints
     server.on('request', onRequest(serverStatus))
-  }
 
-  // Add the user listeners
-  listeners.forEach((listener: any) =>
-    server.on('request', (req: http.IncomingMessage, res: http.ServerResponse) => {
-      // If the server is ready call the listener, else destroy the socket
-      if (serverStatus.isReady()) {
-        listener(req, res)
-      } else {
-        req.socket.destroy()
-      }
-    })
-  )
+    // Add the user listeners
+    listeners.forEach((listener: any) =>
+      server.on('request', (req: http.IncomingMessage, res: http.ServerResponse) => {
+        // If the server is ready, call the listener. Else destroy the socket
+        if (serverStatus.isReady()) {
+          if ((req.url !== livenessEndpoint && req.url !== readinessEndpoint) || req.method !== 'GET') {
+            return listener(req, res)
+          }
+        } else {
+          req.socket.destroy()
+        }
+      })
+    )
+  } else {
+    // Add the user listeners only
+    listeners.forEach((listener: any) =>
+      server.on('request', (req: http.IncomingMessage, res: http.ServerResponse) => {
+        // If the server is ready, call the listener. Else destroy the socket
+        if (serverStatus.isReady()) {
+          return listener(req, res)
+        } else {
+          req.socket.destroy()
+        }
+      })
+    )
+  }
 
   const stop = async (): Promise<void> => {
     if (!server.listening || stopping) {
