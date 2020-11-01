@@ -6,33 +6,33 @@
     "declaration": true,
     "declarationDir": "./lib/types",
     "outDir": "./lib",
-
     /* Strict Type-Checking Options */
     "strict": true,
-
     /* Additional Checks */
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-
     /* Module Resolution Options */
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
-      "test/*": ["__tests__/*"]
+      "test/*": ["tests/*"]
     },
     // "allowSyntheticDefaultImports": true,
     // "esModuleInterop": true,
-
     /* Advanced Options */
     "forceConsistentCasingInFileNames": true,
-
     "plugins": [
-      { "transform": "typescript-transform-paths" },
-      { "transform": "typescript-transform-paths", "afterDeclarations": true }
+      {
+        "transform": "typescript-transform-paths"
+      },
+      {
+        "transform": "typescript-transform-paths",
+        "afterDeclarations": true
+      }
     ]
   },
-  "include": ["src/**/*", "__tests__/**/*"],
+  "include": ["src/**/*", "tests/**/*"],
   "exclude": ["node_modules", "lib"]
 }
