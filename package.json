@@ -163,7 +163,7 @@
     "globals": {
       "ts-jest": {
         "compiler": "ttypescript",
-        "tsConfig": "tsconfig.json",
+        "tsconfig": "tsconfig.json",
         "diagnostics": true
       }
     },
