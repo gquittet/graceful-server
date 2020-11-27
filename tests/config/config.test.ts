@@ -1,4 +1,4 @@
-import defaultConfig from '@/config'
+import defaultConfig from '~/config'
 
 describe('config', () => {
   it('should have a an empty array of promises to run on close', () => {

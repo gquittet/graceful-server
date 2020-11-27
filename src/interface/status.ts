@@ -1,4 +1,4 @@
-import State from '@/core/state'
+import State from '~/core/state'
 
 export default interface IStatus {
   set: (status: State, error?: Error) => IStatus

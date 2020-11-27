@@ -1,6 +1,6 @@
-import Status from '@/core/status'
 import { EventEmitter } from 'events'
-import State from '@/core/state'
+import State from '~/core/state'
+import Status from '~/core/status'
 
 describe('status', () => {
   it('should have a default state as STARTING', () => {

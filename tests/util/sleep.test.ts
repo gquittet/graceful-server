@@ -1,4 +1,4 @@
-import sleep from '@/util/sleep'
+import sleep from '~/util/sleep'
 
 describe('sleep', () => {
   it('should wait the n millisecond', async () => {

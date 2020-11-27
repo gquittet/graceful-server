@@ -139,7 +139,7 @@
     },
     "testRegex": "/tests/.*\\.test\\.ts",
     "moduleNameMapper": {
-      "@/(.*)": "<rootDir>/src/$1"
+      "~/(.*)": "<rootDir>/src/$1"
     }
   },
   "lint-staged": {

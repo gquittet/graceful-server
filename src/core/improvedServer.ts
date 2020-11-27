@@ -1,8 +1,8 @@
-import config from '@/config'
-import ImprovedServer from '@/interface/improvedServer'
-import IStatus from '@/interface/status'
-import onRequest from '@/util/onRequest'
 import * as http from 'http'
+import config from '~/config'
+import ImprovedServer from '~/interface/improvedServer'
+import IStatus from '~/interface/status'
+import onRequest from '~/util/onRequest'
 import SocketsPool from './socketsPool'
 
 const { livenessEndpoint, readinessEndpoint } = config

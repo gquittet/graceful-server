@@ -1,5 +1,5 @@
-import IStatus from '@/interface/status'
 import { EventEmitter } from 'events'
+import IStatus from '~/interface/status'
 import State from './state'
 
 const Status = (eventEmitter: EventEmitter): IStatus => {

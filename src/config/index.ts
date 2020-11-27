@@ -1,5 +1,5 @@
-import IGracefulServerOptions from '@/interface/gracefulServerOptions'
-import IOptions from '@/interface/options'
+import IGracefulServerOptions from '~/interface/gracefulServerOptions'
+import IOptions from '~/interface/options'
 
 const options: IOptions = {
   closePromises: [],

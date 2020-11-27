@@ -1,7 +1,7 @@
-import config from '@/config'
-import State from '@/core/state'
-import ICore from '@/interface/core'
-import ImprovedServer from '@/interface/improvedServer'
+import config from '~/config'
+import State from '~/core/state'
+import ICore from '~/interface/core'
+import ImprovedServer from '~/interface/improvedServer'
 import sleep from './sleep'
 
 const shutdown = (server: ImprovedServer, parent: ICore) => async (type: string, value: number, body?: Error) => {

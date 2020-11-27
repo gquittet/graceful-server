@@ -16,7 +16,7 @@
     /* Module Resolution Options */
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"],
+      "~/*": ["src/*"],
       "test/*": ["tests/*"]
     },
     // "allowSyntheticDefaultImports": true,

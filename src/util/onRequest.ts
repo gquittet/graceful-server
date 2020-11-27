@@ -1,6 +1,6 @@
-import config from '@/config'
-import IStatus from '@/interface/status'
 import * as http from 'http'
+import config from '~/config'
+import IStatus from '~/interface/status'
 
 const onRequest = (serverStatus: IStatus) => (req: http.IncomingMessage, res: http.ServerResponse) => {
   const { livenessEndpoint, readinessEndpoint } = config

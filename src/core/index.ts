@@ -1,8 +1,8 @@
-import ICore from '@/interface/core'
-import init from '@/util/init'
-import shutdown from '@/util/shutdown'
 import { EventEmitter } from 'events'
 import * as http from 'http'
+import ICore from '~/interface/core'
+import init from '~/util/init'
+import shutdown from '~/util/shutdown'
 import ImprovedServer from './improvedServer'
 import Status from './status'
 
