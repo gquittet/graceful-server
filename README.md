@@ -481,8 +481,6 @@ startupProbe:
 
 ★ [Stoppable](https://github.com/hunterloftis/stoppable)
 
-★ [http-terminator](https://github.com/gajus/http-terminator)
-
 ★ [Bret Fisher](https://github.com/BretFisher) for his great articles and videos
 
 ★ [IBM documentation](https://cloud.ibm.com/docs/node?topic=nodejs-node-healthcheck)
