@@ -12,7 +12,7 @@
     "url": "https://github.com/gquittet/graceful-server/issues",
     "email": "guillaume.quittet@gmail.com"
   },
-  "version": "2.2.0",
+  "version": "2.2.1",
   "main": "./lib/index.js",
   "scripts": {
     "prebuild": "npm run clean",
