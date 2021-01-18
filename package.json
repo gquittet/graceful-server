@@ -51,7 +51,7 @@
     "eslint-config-standard": "16.0.2",
     "eslint-import-resolver-babel-module": "5.2.0",
     "eslint-plugin-import": "2.22.1",
-    "eslint-plugin-module-resolver": "1.0.0",
+    "eslint-plugin-module-resolver": "1.2.0",
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-promise": "4.2.1",
     "esm": "3.2.25",
