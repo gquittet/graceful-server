@@ -3,11 +3,12 @@ import config from '~/config'
 import ImprovedServer from '~/interface/improvedServer'
 import IStatus from '~/interface/status'
 import onRequest from '~/util/onRequest'
+import Server from '../interface/server'
 import SocketsPool from './socketsPool'
 
 const { livenessEndpoint, readinessEndpoint } = config
 
-const improvedServer = (server: http.Server, serverStatus: IStatus): ImprovedServer => {
+const improvedServer = (server: Server, serverStatus: IStatus): ImprovedServer => {
   const { healthCheck } = config
   const socketsPool = SocketsPool()
   const secureSocketsPool = SocketsPool()

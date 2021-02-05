@@ -1,11 +1,11 @@
-import * as http from 'http'
 import { makeOptions } from '~/config'
 import GracefulServerCore from '~/core'
 import State from '~/core/state'
 import IGracefulServer from '~/interface/gracefulServer'
 import IGracefulServerOptions from '~/interface/gracefulServerOptions'
+import Server from './interface/server'
 
-const buildGracefulServer = (server: http.Server, options?: IGracefulServerOptions): IGracefulServer => {
+const buildGracefulServer = (server: Server, options?: IGracefulServerOptions): IGracefulServer => {
   makeOptions(options)
   const gracefulServer = GracefulServerCore(server).init()
   return {
