@@ -1,12 +1,12 @@
 import { EventEmitter } from 'events'
-import * as http from 'http'
 import ICore from '~/interface/core'
 import init from '~/util/init'
 import shutdown from '~/util/shutdown'
+import HttpServer from '../interface/httpServer'
 import ImprovedServer from './improvedServer'
 import Status from './status'
 
-const core = (server: http.Server): ICore => {
+const core = (server: HttpServer): ICore => {
   const _emitter = new EventEmitter()
   const status = Status(_emitter)
   const _server = ImprovedServer(server, status)
