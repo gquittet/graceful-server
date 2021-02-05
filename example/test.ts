@@ -12,7 +12,7 @@ const server = http.createServer((req, res) => {
 })
 
 const connectToDb = () =>
-  new Promise(resolve => {
+  new Promise<void>(resolve => {
     setTimeout(() => {
       console.log('Connected to database.')
       resolve()
@@ -20,7 +20,7 @@ const connectToDb = () =>
   })
 
 const closeDbConnection = () =>
-  new Promise(resolve => {
+  new Promise<void>(resolve => {
     setTimeout(() => {
       console.log('Disconnected from database.')
       resolve()
