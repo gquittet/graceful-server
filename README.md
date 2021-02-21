@@ -54,6 +54,7 @@
     - [Company level](#company-level)
 - [Integration with Kubernetes](#integration-with-kubernetes)
 - [Thanks](#thanks)
+- [Sponsors](#sponsors)
 - [Donate](#donate)
 
 ## Features
@@ -490,6 +491,14 @@ startupProbe:
 ★ [Cloud Health](https://github.com/CloudNativeJS/cloud-health)
 
 ★ [Cloud Health Connect](https://github.com/CloudNativeJS/cloud-health-connect)
+
+## Sponsors
+
+<a href="https://jb.gg/OpenSource" target="_blank">
+
+![JetBrains Logo](assets/sponsors/jetbrains.svg)
+
+</a>
 
 ## Donate
 
