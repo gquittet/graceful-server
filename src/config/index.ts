@@ -6,7 +6,8 @@ const options: IOptions = {
   timeout: 1000,
   healthCheck: true,
   livenessEndpoint: '/live',
-  readinessEndpoint: '/ready'
+  readinessEndpoint: '/ready',
+  gracePeriod: 0
 }
 let canOverride = true
 
