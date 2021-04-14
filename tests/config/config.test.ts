@@ -31,4 +31,10 @@ describe('config', () => {
     const { readinessEndpoint } = defaultConfig
     expect(readinessEndpoint).toBe('/ready')
   })
+
+  it('should have a default gracePeriod at 0', () => {
+    expect.assertions(1)
+    const { gracePeriod } = defaultConfig
+    expect(gracePeriod).toBe(0)
+  })
 })
