@@ -4,4 +4,5 @@ export default interface IOptions {
   healthCheck: boolean
   livenessEndpoint: string
   readinessEndpoint: string
+  gracePeriod: number
 }
