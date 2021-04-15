@@ -1,0 +1,1 @@
+export const MILLISECONDS_IN_ONE_SECOND = 1000
