@@ -5,5 +5,4 @@ export default interface IOptions {
   kubernetes: boolean
   livenessEndpoint: string
   readinessEndpoint: string
-  gracePeriod: number
 }
