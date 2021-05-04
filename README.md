@@ -307,15 +307,14 @@ where `State` is an enum that contains, `STARTING`, `READY`, `SHUTTING_DOWN` and
 
 All of the below options are optional.
 
-| Name              |            Type            | Default |                                                              Description |
-| ----------------- | :------------------------: | :-----: | -----------------------------------------------------------------------: |
-| closePromises     | (() => Promise<unknown>)[] |   []    |                            The functions to run when the API is stopping |
-| timeout           |           number           |  1000   |         The time in milliseconds to wait before shutting down the server |
-| healthCheck       |          boolean           |  true   |            Enable/Disable the default endpoints (liveness and readiness) |
-| kubernetes        |          boolean           |  false  |                                       Enable/Disable the kubernetes mode |
-| livenessEndpoint  |           string           |  /live  |                                                    The liveness endpoint |
-| readinessEndpoint |           string           | /ready  |                                                   The readiness endpoint |
-| gracePeriod       |           number           |    0    | Number of seconds to wait before stopping to accept the incoming traffic |
+| Name              |            Type            | Default |                                                      Description |
+| ----------------- | :------------------------: | :-----: | ---------------------------------------------------------------: |
+| closePromises     | (() => Promise<unknown>)[] |   []    |                    The functions to run when the API is stopping |
+| timeout           |           number           |  1000   | The time in milliseconds to wait before shutting down the server |
+| healthCheck       |          boolean           |  true   |    Enable/Disable the default endpoints (liveness and readiness) |
+| kubernetes        |          boolean           |  false  |                               Enable/Disable the kubernetes mode |
+| livenessEndpoint  |           string           |  /live  |                                            The liveness endpoint |
+| readinessEndpoint |           string           | /ready  |                                           The readiness endpoint |
 
 If you use Kubernetes, enable the kubernetes mode to let it handles the incoming traffic of your application.
 
@@ -441,10 +440,7 @@ CMD ["node", "./build/src/main.js"]
 
 ## Integration with Kubernetes
 
-In the following example, you have to setup the gracePeriod to 5 seconds because you set up the readiness timeout to 5 seconds.
-[(Related to this issue)](https://github.com/gquittet/graceful-server/issues/5)
-
-Don't forget to enable the kubernetes mode. [Check here](#igracefulserveroptions)
+Don't forget to enable the kubernetes mode. [Check here](#igracefulserveroptions) (related to this [issue](https://github.com/gquittet/graceful-server/issues/5))
 
 ```yml
 readinessProbe:
