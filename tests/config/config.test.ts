@@ -20,6 +20,12 @@ describe('config', () => {
     expect(healthCheck).toBe(true)
   })
 
+  it('should have the kubernetes mode disabled by default', () => {
+    expect.assertions(1)
+    const { kubernetes } = defaultConfig
+    expect(kubernetes).toBe(false)
+  })
+
   it('should have a default liveness endpoint as /live', () => {
     expect.assertions(1)
     const { livenessEndpoint } = defaultConfig
@@ -30,11 +36,5 @@ describe('config', () => {
     expect.assertions(1)
     const { readinessEndpoint } = defaultConfig
     expect(readinessEndpoint).toBe('/ready')
-  })
-
-  it('should have a default gracePeriod at 0', () => {
-    expect.assertions(1)
-    const { gracePeriod } = defaultConfig
-    expect(gracePeriod).toBe(0)
   })
 })
