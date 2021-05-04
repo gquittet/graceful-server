@@ -14,7 +14,8 @@ const Status = (eventEmitter: EventEmitter): IStatus => {
     setReady: function () {
       this.set(State.READY)
     },
-    isReady: (): boolean => _currentState === State.READY
+    isReady: (): boolean => _currentState === State.READY,
+    isShuttingDown: (): boolean => _currentState === State.SHUTTING_DOWN
   }
 }
 

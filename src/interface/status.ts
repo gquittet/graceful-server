@@ -5,4 +5,5 @@ export default interface IStatus {
   get: () => State
   setReady: () => void
   isReady: () => boolean
+  isShuttingDown: () => boolean
 }
