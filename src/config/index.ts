@@ -5,6 +5,7 @@ const options: IOptions = {
   closePromises: [],
   timeout: 1000,
   healthCheck: true,
+  kubernetes: false,
   livenessEndpoint: '/live',
   readinessEndpoint: '/ready',
   gracePeriod: 0
