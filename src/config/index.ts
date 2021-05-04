@@ -7,8 +7,7 @@ const options: IOptions = {
   healthCheck: true,
   kubernetes: false,
   livenessEndpoint: '/live',
-  readinessEndpoint: '/ready',
-  gracePeriod: 0
+  readinessEndpoint: '/ready'
 }
 let canOverride = true
 
