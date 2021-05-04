@@ -10,11 +10,12 @@ const shutdown = (server: ImprovedServer, parent: ICore) => async (type: string,
 
   const error: Error = body && body.message ? body : new Error(type)
 
+  parent.status.set(State.SHUTTING_DOWN, error)
+
   if (gracePeriod > 0) {
     await sleep(gracePeriod * MILLISECONDS_IN_ONE_SECOND)
   }
 
-  parent.status.set(State.SHUTTING_DOWN, error)
   await sleep(timeout)
 
   await Promise.all(closePromises.map(closePromise => closePromise()))
