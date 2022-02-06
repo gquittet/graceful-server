@@ -2,5 +2,3 @@ node_modules
 lib
 coverage
 .eslintcache
-package-lock.json
-yarn.lock

@@ -77,7 +77,7 @@
 
 ## Requirements
 
-✔ NodeJS >= 10.13.0
+✔ NodeJS >= 12.0
 
 ## Installation
 

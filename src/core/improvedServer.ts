@@ -69,7 +69,7 @@ const improvedServer = (server: Server, serverStatus: IStatus): ImprovedServer =
 
     server.removeAllListeners('request')
     server.on('request', (_: http.IncomingMessage, res: http.ServerResponse) => {
-      if (!res.headersSent) return res.setHeader('connection', 'close')
+      if (!res.headersSent) res.setHeader('connection', 'close')
     })
 
     await Promise.all([socketsPool.closeAll(), secureSocketsPool.closeAll()])
