@@ -25,7 +25,7 @@
     "prepare": "husky install",
     "postpublish": "pinst --enable",
     "prepublishOnly": "pinst --disable && npm run preversion",
-    "test": "NODE_ENV=test jest",
+    "test": "NODE_ENV=test jest --runInBand",
     "test:coverage": "NODE_ENV=test jest --coverage",
     "test:lint": "eslint tests/**/*.ts",
     "type-check": "ttsc -p tsconfig.prod.json --noEmit",
