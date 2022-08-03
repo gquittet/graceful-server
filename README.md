@@ -77,7 +77,7 @@
 
 ## Requirements
 
-✔ NodeJS >= 12.0
+✔ NodeJS >= 14.0
 
 ## Installation
 
@@ -91,6 +91,12 @@ npm install --save @gquittet/graceful-server
 
 ```
 yarn add @gquittet/graceful-server
+```
+
+### PNPM
+
+```
+pnpm add @gquittet/graceful-server
 ```
 
 ## Endpoint
