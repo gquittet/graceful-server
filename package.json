@@ -128,12 +128,15 @@
     }
   },
   "jest": {
-    "globals": {
-      "ts-jest": {
-        "compiler": "ttypescript",
-        "diagnostics": true,
-        "tsconfig": "tsconfig.json"
-      }
+    "transform": {
+      "\\*.ts$": [
+        "ts-jest",
+        {
+          "compiler": "ttypescript",
+          "diagnostics": true,
+          "tsconfig": "tsconfig.json"
+        }
+      ]
     },
     "moduleNameMapper": {
       "~/(.*)": "<rootDir>/src/$1"
