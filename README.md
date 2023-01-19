@@ -34,9 +34,10 @@
 - [Installation](#installation)
   - [NPM](#npm)
   - [Yarn](#yarn)
+  - [PNPM](#pnpm)
 - [Endpoint](#endpoint)
-  - [<code>/live</code>](#live)
-  - [<code>/ready</code>](#ready)
+  - [/live](#live)
+  - [/ready](#ready)
 - [Example](#example)
   - [ExpressJS](#expressjs)
   - [Fastify](#fastify)
@@ -207,7 +208,7 @@ fastify.get('/', async (request, reply) => {
 // Run the server!
 const start = async () => {
   try {
-    await fastify.listen(3000)
+    await fastify.listen({ port: 3000 })
     fastify.log.info(`server listening on ${fastify.server.address().port}`)
     gracefulServer.setReady()
   } catch (err) {
@@ -217,6 +218,16 @@ const start = async () => {
 }
 start()
 ```
+
+**Be careful, if you are using Fastify v4.x.x with Node 16 and below**, you have to use
+
+```javascript
+await fastify.listen({ port: 3000, host: '0.0.0.0' })
+```
+
+because Node 16 and below does not support multiple addresses binding.
+
+See: https://github.com/fastify/fastify/issues/3536
 
 ### Koa
 
