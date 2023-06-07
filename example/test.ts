@@ -41,7 +41,7 @@ gracefulServer.on(GracefulServer.SHUTDOWN, (error: Error) => {
   console.log('Server is down because of', error.message)
 })
 
-server.listen(8080, async () => {
+server.listen(34567, async () => {
   console.log('Server is starting')
   await connectToDb()
   gracefulServer.setReady()
