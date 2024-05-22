@@ -5,4 +5,4 @@ enum State {
   'SHUTDOWN' = 'SHUTDOWN'
 }
 
-export default State
+export default State;

@@ -1,7 +1,7 @@
-import * as http from 'http'
-import * as http2 from 'http2'
-import * as https from 'https'
-import * as tls from 'tls'
+import type * as http from 'http';
+import type * as http2 from 'http2';
+import type * as https from 'https';
+import type * as tls from 'tls';
 
 interface ImprovedHttpServer extends http.Server {
   stop: () => Promise<void>
@@ -23,11 +23,9 @@ interface ImprovedTlsServer extends tls.Server {
   stop: () => Promise<void>
 }
 
-type ImprovedServer =
+export type ImprovedServer =
   | ImprovedHttpServer
   | ImprovedHttp2Server
   | ImprovedHttp2SecureServer
   | ImprovedHttpsServer
   | ImprovedTlsServer
-
-export default ImprovedServer

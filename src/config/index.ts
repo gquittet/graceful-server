@@ -1,22 +1,22 @@
-import IGracefulServerOptions from '~/interface/gracefulServerOptions'
-import IOptions from '~/interface/options'
+import type { IGracefulServerOptions } from "#interface/gracefulServerOptions";
+import type { IOptions } from "#interface/options";
 
 const options: IOptions = {
   closePromises: [],
   timeout: 1000,
   healthCheck: true,
   kubernetes: false,
-  livenessEndpoint: '/live',
-  readinessEndpoint: '/ready'
-}
-let canOverride = true
+  livenessEndpoint: "/live",
+  readinessEndpoint: "/ready",
+};
+let canOverride = true;
 
 export const makeOptions = (newOptions?: IGracefulServerOptions) => {
   if (canOverride) {
-    Object.freeze(Object.assign(options, newOptions))
-    canOverride = false
+    Object.freeze(Object.assign(options, newOptions));
+    canOverride = false;
   }
-  return options
-}
+  return options;
+};
 
-export default options
+export default options;

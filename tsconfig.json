@@ -1,38 +1,21 @@
 {
   "compilerOptions": {
-    /* Basic Options */
+    "rootDir": "./",
     "target": "ESNext",
-    "module": "commonjs" /* Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', or 'ESNext'. */,
+    "module": "NodeNext",
+    "lib": ["ESNext"],
+    "moduleResolution": "NodeNext",
     "declaration": true,
     "declarationDir": "./lib/types",
     "outDir": "./lib",
-    /* Strict Type-Checking Options */
     "strict": true,
-    /* Additional Checks */
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-    /* Module Resolution Options */
-    "baseUrl": ".",
-    "paths": {
-      "~/*": ["src/*"],
-      "test/*": ["tests/*"]
-    },
-    // "allowSyntheticDefaultImports": true,
-    // "esModuleInterop": true,
-    /* Advanced Options */
     "forceConsistentCasingInFileNames": true,
-    "plugins": [
-      {
-        "transform": "typescript-transform-paths"
-      },
-      {
-        "transform": "typescript-transform-paths",
-        "afterDeclarations": true
-      }
-    ]
+    "verbatimModuleSyntax": true
   },
-  "include": ["src/**/*", "tests/**/*"],
+  "include": ["src/**/*"],
   "exclude": ["node_modules", "lib"]
 }

@@ -1,9 +1,9 @@
-import { EventEmitter } from 'events'
-import IStatus from './status'
+import type { IStatus } from "#interface/status";
+import type { EventEmitter } from "events";
 
-export default interface ICore {
-  status: IStatus
-  init: () => ICore
-  shutdown: (type: string, value: number, error?: Error) => Promise<void>
-  on: (name: string, callback: (...args: any[]) => void) => EventEmitter
-}
+export type ICore = {
+  status: IStatus;
+  init: () => ICore;
+  shutdown: (type: string, value: number, error?: Error) => Promise<void>;
+  on: (name: string, callback: (...args: unknown[]) => void) => EventEmitter;
+};

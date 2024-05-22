@@ -1,7 +1,7 @@
-import { EventEmitter } from 'events'
+import type { EventEmitter } from "events";
 
-export default interface IGracefulServer {
-  isReady: () => boolean
-  setReady: () => void
-  on: (name: string, callback: (...args: any[]) => void) => EventEmitter
-}
+export type IGracefulServer = {
+  isReady: () => boolean;
+  setReady: () => void;
+  on: (name: string, callback: (...args: unknown[]) => void) => EventEmitter;
+};
