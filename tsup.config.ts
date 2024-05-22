@@ -10,4 +10,5 @@ export default defineConfig({
   minify: true,
   clean: true,
   cjsInterop: true,
+  splitting: true,
 });
