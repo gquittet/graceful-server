@@ -1,4 +1,6 @@
 .*
 *
 !/lib/index.js
+!/lib/index.cjs
 !/lib/**/*.d.ts
+!/lib/**/*.d.cts
