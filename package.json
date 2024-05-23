@@ -1,6 +1,6 @@
 {
   "name": "@gquittet/graceful-server",
-  "version": "5.0.1-alpha4",
+  "version": "5.0.1-alpha5",
   "description": "Tiny (~5k), dependency-free Node.JS library to make your API more graceful",
   "license": "MIT",
   "author": "Guillaume Quittet <guillaume.quittet@gmail.com> (https://github.com/gquittet)",
