@@ -2,7 +2,7 @@ import { defineConfig } from "tsup";
 
 // noinspection JSUnusedGlobalSymbols
 export default defineConfig({
-  entry: ["./src/**/*.ts"],
+  entry: ["./src/**/*.ts", "!./src/**/*.test.ts"],
   format: ["esm", "cjs"],
   outDir: "./lib/src",
   target: "node18",
