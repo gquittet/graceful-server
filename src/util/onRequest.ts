@@ -1,5 +1,5 @@
 import type { IStatus } from "#interface/status";
-import type * as http from "http";
+import type http from "node:http";
 import config from "#config/index";
 
 const onRequest =

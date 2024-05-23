@@ -26,7 +26,8 @@
         "default": "./lib/index.cjs",
         "types": "./lib/index.d.cts"
       }
-    }
+    },
+    "./package.json": "./package.json"
   },
   "imports": {
     "#config/*": "./src/config/*.js",
@@ -36,7 +37,7 @@
     "#util/*": "./src/util/*.js"
   },
   "scripts": {
-    "build": "tsup",
+    "build": "tsup --onSuccess='tsc --emitDeclarationOnly --declaration'",
     "lint": "eslint",
     "test": "vitest",
     "coverage": "vitest run --coverage",

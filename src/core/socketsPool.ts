@@ -1,14 +1,14 @@
-import type * as net from 'net';
+import type { Socket } from "node:net";
 
-const SocketsPool = (sockets?: Set<net.Socket>) => {
-  const _sockets = sockets || new Set<net.Socket>();
+const SocketsPool = (sockets?: Set<Socket>) => {
+  const _sockets = sockets || new Set<Socket>();
 
-  const onConnection = (socket: net.Socket) => {
+  const onConnection = (socket: Socket) => {
     _sockets.add(socket);
-    socket.once('close', () => _sockets.delete(socket));
+    socket.once("close", () => _sockets.delete(socket));
   };
 
-  const destroySocket = (socket: net.Socket) => {
+  const destroySocket = (socket: Socket) => {
     socket.destroy();
     _sockets.delete(socket);
   };
