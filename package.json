@@ -30,26 +30,11 @@
     "./package.json": "./package.json"
   },
   "imports": {
-    "#config/*": [
-      "./src/config/*.js",
-      "./lib/src/config/*.js"
-    ],
-    "#constants/*": [
-      "./src/constants/*.js",
-      "./lib/src/constants/*.js"
-    ],
-    "#core/*": [
-      "./src/core/*.js",
-      "./lib/src/core/*.js"
-    ],
-    "#interface/*": [
-      "./src/interface/*.js",
-      "./lib/src/interface/*.js"
-    ],
-    "#util/*": [
-      "./src/util/*.js",
-      "./lib/src/util/*.js"
-    ]
+    "#config/*": "./lib/src/config/*.js",
+    "#constants/*": "./lib/src/constants/*.js",
+    "#core/*": "./lib/src/core/*.js",
+    "#interface/*": "./lib/src/interface/*.js",
+    "#util/*": "./lib/src/util/*.js"
   },
   "scripts": {
     "build": "tsup --onSuccess='tsc --emitDeclarationOnly --declaration'",
