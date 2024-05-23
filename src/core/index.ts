@@ -18,6 +18,7 @@ const core = (server: Server): ICore => {
     shutdown: function (type: string, value: number, error?: Error) {
       return shutdown(_server, this)(type, value, error);
     },
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     on: (name: string, callback: (...args: any[]) => void) => _emitter.on(name, callback),
   };
 };
