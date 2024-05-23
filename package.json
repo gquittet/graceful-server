@@ -14,27 +14,49 @@
     "url": "https://github.com/gquittet/graceful-server/issues"
   },
   "type": "module",
-  "main": "./lib/src/index.cjs",
-  "types": "./lib/src/index.d.cts",
+  "main": "./src/index.cjs",
+  "types": "./src/index.d.cts",
   "exports": {
     ".": {
       "import": {
-        "default": "./lib/src/index.js",
-        "types": "./lib/src/index.d.ts"
+        "default": "./src/index.js",
+        "types": "./src/index.d.ts"
       },
       "require": {
-        "default": "./lib/src/index.cjs",
-        "types": "./lib/src/index.d.cts"
+        "default": "./src/index.cjs",
+        "types": "./src/index.d.cts"
       }
-    },
-    "./package.json": "./package.json"
+    }
   },
   "imports": {
-    "#config/*": "./lib/src/config/*.js",
-    "#constants/*": "./lib/src/constants/*.js",
-    "#core/*": "./lib/src/core/*.js",
-    "#interface/*": "./lib/src/interface/*.js",
-    "#util/*": "./lib/src/util/*.js"
+    "#config/*": "./src/config/*.js",
+    "#constants/*": "./src/constants/*.js",
+    "#core/*": "./src/core/*.js",
+    "#interface/*": "./src/interface/*.js",
+    "#util/*": "./src/util/*.js"
+  },
+  "publishConfig": {
+    "main": "./lib/index.cjs",
+    "types": "./lib/index.d.cts",
+    "exports": {
+      ".": {
+        "import": {
+          "default": "./lib/index.js",
+          "types": "./lib/index.d.ts"
+        },
+        "require": {
+          "default": "./lib/index.cjs",
+          "types": "./lib/index.d.cts"
+        }
+      }
+    },
+    "imports": {
+      "#config/*": "./lib/config/*.js",
+      "#constants/*": "./lib/constants/*.js",
+      "#core/*": "./lib/core/*.js",
+      "#interface/*": "./lib/interface/*.js",
+      "#util/*": "./lib/util/*.js"
+    }
   },
   "scripts": {
     "build": "tsup --onSuccess='tsc --emitDeclarationOnly --declaration'",

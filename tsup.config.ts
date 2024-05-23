@@ -4,7 +4,7 @@ import { defineConfig } from "tsup";
 export default defineConfig({
   entry: ["./src/**/*.ts", "!./src/**/*.test.ts"],
   format: ["esm", "cjs"],
-  outDir: "./lib/src",
+  outDir: "./lib",
   target: "node18",
   tsconfig: "tsconfig.prod.json",
   bundle: false,
