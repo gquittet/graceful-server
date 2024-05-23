@@ -1,6 +1,6 @@
 {
   "name": "@gquittet/graceful-server",
-  "version": "5.0.1-alpha1",
+  "version": "5.0.1-alpha2",
   "description": "Tiny (~5k), dependency-free Node.JS library to make your API more graceful",
   "license": "MIT",
   "author": "Guillaume Quittet <guillaume.quittet@gmail.com> (https://github.com/gquittet)",
@@ -30,11 +30,26 @@
     "./package.json": "./package.json"
   },
   "imports": {
-    "#config/*": ["./src/config/*.js", "./lib/src/config/*.js"],
-    "#constants/*": ["./src/constants/*.js", "./lib/src/constants/*.js"],
-    "#core/*": ["./src/core/*.js", "./lib/src/core/*.js"],
-    "#interface/*": ["./src/interface/*.js", "./lib/src/interface/*.js"],
-    "#util/*": ["./src/util/*.js", "./lib/src/util/*.js"]
+    "#config/*": [
+      "./src/config/*.js",
+      "./lib/src/config/*.js"
+    ],
+    "#constants/*": [
+      "./src/constants/*.js",
+      "./lib/src/constants/*.js"
+    ],
+    "#core/*": [
+      "./src/core/*.js",
+      "./lib/src/core/*.js"
+    ],
+    "#interface/*": [
+      "./src/interface/*.js",
+      "./lib/src/interface/*.js"
+    ],
+    "#util/*": [
+      "./src/util/*.js",
+      "./lib/src/util/*.js"
+    ]
   },
   "scripts": {
     "build": "tsup --onSuccess='tsc --emitDeclarationOnly --declaration'",
