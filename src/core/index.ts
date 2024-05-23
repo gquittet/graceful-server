@@ -18,7 +18,7 @@ const core = (server: Server): ICore => {
     shutdown: function (type: string, value: number, error?: Error) {
       return shutdown(_server, this)(type, value, error);
     },
-    on: (name: string, callback: (...args: unknown[]) => void) => _emitter.on(name, callback),
+    on: (name: string, callback: (...args: any[]) => void) => _emitter.on(name, callback),
   };
 };
 
