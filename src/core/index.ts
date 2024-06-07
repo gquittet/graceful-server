@@ -4,7 +4,6 @@ import { EventEmitter } from "events";
 import ImprovedServer from "#core/improvedServer";
 import Status from "#core/status";
 import init from "#util/init";
-import shutdown from "#util/shutdown";
 
 const core = (server: Server): ICore => {
   const _emitter = new EventEmitter();
@@ -15,8 +14,8 @@ const core = (server: Server): ICore => {
     init: function () {
       return init(this);
     },
-    shutdown: function (type: string, value: number, error?: Error) {
-      return shutdown(_server, this)(type, value, error);
+    stop: function (args?: { type?: string; value: number; body?: Error }) {
+      return _server.stop(args);
     },
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     on: (name: string, callback: (...args: any[]) => void) => _emitter.on(name, callback),
