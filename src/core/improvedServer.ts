@@ -1,16 +1,16 @@
 import type { Server } from "#interface/server";
 import type { IStatus } from "#interface/status";
 import type http from "node:http";
+import { exit } from "node:process";
 import config from "#config/index";
 import SocketsPool from "#core/socketsPool";
+import State from "#core/state";
 import onRequest from "#util/onRequest";
+import sleep from "#util/sleep";
 
 const { livenessEndpoint, readinessEndpoint } = config;
 
-const improvedServer = <TServer extends Server>(
-  server: TServer,
-  serverStatus: IStatus,
-): TServer & { stop: () => Promise<void> } => {
+const improvedServer = <TServer extends Server>(server: TServer, serverStatus: IStatus) => {
   const { healthCheck, kubernetes } = config;
   const socketsPool = SocketsPool();
   const secureSocketsPool = SocketsPool();
@@ -65,12 +65,29 @@ const improvedServer = <TServer extends Server>(
     );
   }
 
-  const stop = async (): Promise<void> => {
+  const stop = async (
+    args: { value: number; body?: Error; type?: string } = { value: 0 },
+  ): Promise<void> => {
     if (!server.listening || stopping) {
       return;
     }
 
     stopping = true;
+
+    const { timeout, closePromises } = config;
+
+    let error: Error | undefined;
+    if (args.body && args.body.message) {
+      error = args.body;
+    } else if (args.type) {
+      error = new Error(args.type);
+    }
+
+    serverStatus.set(State.SHUTTING_DOWN, error);
+
+    await sleep(timeout);
+
+    await Promise.all(closePromises.map((closePromise) => closePromise()));
 
     server.removeAllListeners("request");
     server.on("request", (_: http.IncomingMessage, res: http.ServerResponse) => {
@@ -79,14 +96,16 @@ const improvedServer = <TServer extends Server>(
 
     await Promise.all([socketsPool.closeAll(), secureSocketsPool.closeAll()]);
 
-    return new Promise((resolve, reject) => {
-      server.close((error) => {
-        if (error) {
-          reject(error);
-        } else {
-          resolve();
+    await new Promise((resolve, reject) => {
+      server.close((err) => {
+        if (err) {
+          return reject(err);
         }
+        return resolve(error);
       });
+
+      serverStatus.set(State.SHUTDOWN, error);
+      exit(args.value);
     });
   };
 

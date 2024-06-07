@@ -12,6 +12,7 @@ const buildGracefulServer = (server: Server, options?: IGracefulServerOptions): 
     isReady: () => gracefulServer.status.isReady(),
     setReady: () => gracefulServer.status.setReady(),
     on: gracefulServer.on,
+    stop: async () => await gracefulServer.stop(),
   };
 };
 
