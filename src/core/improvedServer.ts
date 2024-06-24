@@ -74,7 +74,7 @@ const improvedServer = <TServer extends Server>(server: TServer, serverStatus: I
 
     stopping = true;
 
-    const { timeout, closePromises } = config;
+    const { timeout, closePromises, syncClose } = config;
 
     let error: Error | undefined;
     if (args.body && args.body.message) {
@@ -87,14 +87,20 @@ const improvedServer = <TServer extends Server>(server: TServer, serverStatus: I
 
     await sleep(timeout);
 
-    await Promise.all(closePromises.map((closePromise) => closePromise()));
+    if (syncClose) {
+      for (const closePromise of closePromises) {
+        await closePromise();
+      }
+    } else {
+      await Promise.allSettled(closePromises.map((closePromise) => closePromise()));
+    }
 
     server.removeAllListeners("request");
     server.on("request", (_: http.IncomingMessage, res: http.ServerResponse) => {
       if (!res.headersSent) res.setHeader("connection", "close");
     });
 
-    await Promise.all([socketsPool.closeAll(), secureSocketsPool.closeAll()]);
+    await Promise.allSettled([socketsPool.closeAll(), secureSocketsPool.closeAll()]);
 
     await new Promise((resolve, reject) => {
       server.close((err) => {

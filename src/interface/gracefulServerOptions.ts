@@ -1,4 +1,5 @@
 export type IGracefulServerOptions = {
+  syncClose?: boolean;
   closePromises?: (() => Promise<unknown>)[];
   timeout?: number;
   healthCheck?: boolean;
