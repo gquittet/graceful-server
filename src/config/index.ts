@@ -2,6 +2,7 @@ import type { IGracefulServerOptions } from "#interface/gracefulServerOptions";
 import type { IOptions } from "#interface/options";
 
 const options: IOptions = {
+  syncClose: false,
   closePromises: [],
   timeout: 1000,
   healthCheck: true,

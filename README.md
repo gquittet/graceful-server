@@ -319,7 +319,8 @@ where `State` is an enum that contains, `STARTING`, `READY`, `SHUTTING_DOWN` and
 All of the below options are optional.
 
 | Name              |            Type            | Default |                                                      Description |
-| ----------------- | :------------------------: | :-----: | ---------------------------------------------------------------: |
+|-------------------|:--------------------------:|:-------:|-----------------------------------------------------------------:|
+| syncClose         |          boolean           |  false  |                               Run the closePromises in a series. |
 | closePromises     | (() => Promise<unknown>)[] |   []    |                    The functions to run when the API is stopping |
 | timeout           |           number           |  1000   | The time in milliseconds to wait before shutting down the server |
 | healthCheck       |          boolean           |  true   |    Enable/Disable the default endpoints (liveness and readiness) |

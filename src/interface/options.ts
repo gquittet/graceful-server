@@ -1,4 +1,5 @@
 export type IOptions = {
+  syncClose: boolean;
   closePromises: (() => Promise<unknown>)[];
   timeout: number;
   healthCheck: boolean;
