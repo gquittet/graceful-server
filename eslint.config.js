@@ -10,6 +10,7 @@ import tsEslint from "typescript-eslint";
 
 // noinspection JSUnusedGlobalSymbols
 export default tsEslint.config(
+  { ignores: ["lib/", "example/"] },
   eslint.configs.recommended,
   ...tsEslint.configs.recommended,
   eslintSecurity.configs.recommended,
