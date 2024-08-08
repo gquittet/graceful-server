@@ -1,5 +1,5 @@
-import { describe, it, expect, vi } from "vitest";
 import { EventEmitter } from "events";
+import { describe, expect, it, vi } from "vitest";
 import State from "#core/state";
 import Status from "#core/status";
 
