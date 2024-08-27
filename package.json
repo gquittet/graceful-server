@@ -16,11 +16,11 @@
   "type": "module",
   "main": "./lib/index.cjs",
   "module": "./lib/index.mjs",
-  "types": "./lib/index.d.ts",
+  "types": "./lib/index.d.cts",
   "exports": {
     ".": {
       "require": {
-        "types": "./lib/index.d.ts",
+        "types": "./lib/index.d.cts",
         "default": "./lib/index.cjs"
       },
       "import": {

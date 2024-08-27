@@ -13,6 +13,7 @@ export default defineConfig({
   bundle: false,
   minify: true,
   clean: true,
+  dts: { resolve: true, entry: "src/index.ts" },
   cjsInterop: true,
   splitting: true,
 });
