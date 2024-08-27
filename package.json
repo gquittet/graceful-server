@@ -7,25 +7,22 @@
   "homepage": "https://github.com/gquittet/graceful-server#readme",
   "repository": {
     "type": "git",
-    "url": "git@github.com:gquittet/graceful-server.git"
+    "url": "git@https://github.com/gquittet/graceful-server.git"
   },
   "bugs": {
     "email": "guillaume.quittet@gmail.com",
     "url": "https://github.com/gquittet/graceful-server/issues"
   },
   "type": "module",
-  "main": "./src/index.cjs",
-  "types": "./src/index.d.cts",
+  "main": "./lib/index.cjs",
+  "module": "./lib/index.mjs",
+  "types": "./lib/index.d.ts",
   "exports": {
     ".": {
-      "import": {
-        "default": "./src/index.js",
-        "types": "./src/index.d.ts"
-      },
-      "require": {
-        "default": "./src/index.cjs",
-        "types": "./src/index.d.cts"
-      }
+      "require": "./lib/index.cjs",
+      "import": "./lib/index.mjs",
+      "types": "./lib/index.d.ts",
+      "default": "./lib/index.mjs"
     }
   },
   "imports": {
@@ -35,31 +32,38 @@
     "#interface/*": "./src/interface/*.js",
     "#util/*": "./src/util/*.js"
   },
+  "files": ["./lib/**/*"],
   "publishConfig": {
-    "main": "./lib/index.cjs",
-    "types": "./lib/index.d.cts",
-    "exports": {
-      ".": {
-        "import": {
-          "default": "./lib/index.js",
-          "types": "./lib/index.d.ts"
-        },
-        "require": {
-          "default": "./lib/index.cjs",
-          "types": "./lib/index.d.cts"
-        }
-      }
-    },
     "imports": {
-      "#config/*": "./lib/config/*.js",
-      "#constants/*": "./lib/constants/*.js",
-      "#core/*": "./lib/core/*.js",
-      "#interface/*": "./lib/interface/*.js",
-      "#util/*": "./lib/util/*.js"
+      "#config/*": {
+        "require": "./lib/config/*.cjs",
+        "import": "./lib/config/*.mjs",
+        "default": "./lib/config/*.mjs"
+      },
+      "#constants/*": {
+        "require": "./lib/constants/*.cjs",
+        "import": "./lib/constants/*.mjs",
+        "default": "./lib/constants/*.mjs"
+      },
+      "#core/*": {
+        "require": "./lib/core/*.cjs",
+        "import": "./lib/core/*.mjs",
+        "default": "./lib/core/*.mjs"
+      },
+      "#interface/*": {
+        "require": "./lib/interface/*.cjs",
+        "import": "./lib/interface/*.mjs",
+        "default": "./lib/interface/*.mjs"
+      },
+      "#util/*": {
+        "require": "./lib/util/*.cjs",
+        "import": "./lib/util/*.mjs",
+        "default": "./lib/util/*.mjs"
+      }
     }
   },
   "scripts": {
-    "build": "tsup --onSuccess='tsc --emitDeclarationOnly --declaration'",
+    "build": "tsup --onSuccess='tsc -p tsconfig.prod.json --emitDeclarationOnly --declaration'",
     "lint": "eslint",
     "test": "vitest",
     "coverage": "vitest run --coverage",

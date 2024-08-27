@@ -5,6 +5,9 @@ export default defineConfig({
   entry: ["./src/**/*.ts", "!./src/**/*.test.ts"],
   format: ["esm", "cjs"],
   outDir: "./lib",
+  outExtension: ctx => {
+    return { js: ctx.format === 'esm' ? ".mjs" : ".cjs" };
+  },
   target: "node18",
   tsconfig: "tsconfig.prod.json",
   bundle: false,
