@@ -122,7 +122,8 @@
     "lint": "eslint",
     "test": "vitest",
     "coverage": "vitest run --coverage",
-    "preversion": "npm run lint && npm run coverage && npm run build"
+    "preversion": "pnpm lint && pnpm coverage && pnpm build",
+    "prepublish": "pnpm lint && pnpm coverage && pnpm build"
   },
   "optionalDependencies": {
     "fsevents": "^2.3.3"
