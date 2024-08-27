@@ -122,8 +122,8 @@
     "lint": "eslint",
     "test": "vitest",
     "coverage": "vitest run --coverage",
-    "preversion": "pnpm lint && pnpm coverage && pnpm build",
-    "prepublish": "pnpm lint && pnpm coverage && pnpm build"
+    "preversion": "pnpm lint && pnpm coverage && pnpm build && publint --strict",
+    "prepublish": "pnpm lint && pnpm coverage && pnpm build && publint --strict"
   },
   "optionalDependencies": {
     "fsevents": "^2.3.3"
@@ -143,6 +143,7 @@
     "eslint-plugin-sonarjs": "^2.0.1",
     "eslint-plugin-unused-imports": "^4.0.1",
     "prettier": "^3.3.3",
+    "publint": "^0.2.10",
     "tsup": "^8.2.4",
     "typescript": "^5.5.4",
     "typescript-eslint": "^8.0.1",
