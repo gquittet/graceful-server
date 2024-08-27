@@ -1,0 +1,34 @@
+name: NPM Publish
+
+on:
+  push:
+    tags:
+      - 'v*'
+  release:
+    types: [published]
+
+jobs:
+  publish-npm:
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+          registry-url: https://registry.npmjs.org/
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Lint code base
+        run: pnpm test
+      - name: Publish package
+        run: pnpm publish --provenance --access public --no-git-checks
+        env:
+          NPM_CONFIG_PROVENANCE: true
+          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
