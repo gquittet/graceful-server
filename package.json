@@ -19,10 +19,18 @@
   "types": "./lib/index.d.ts",
   "exports": {
     ".": {
-      "require": "./lib/index.cjs",
-      "import": "./lib/index.mjs",
-      "types": "./lib/index.d.ts",
-      "default": "./lib/index.mjs"
+      "require": {
+        "types": "./lib/index.d.ts",
+        "default": "./lib/index.cjs"
+      },
+      "import": {
+        "types": "./lib/index.d.ts",
+        "default": "./lib/index.mjs"
+      },
+      "default": {
+        "types": "./lib/index.d.ts",
+        "default": "./lib/index.mjs"
+      }
     }
   },
   "imports": {
