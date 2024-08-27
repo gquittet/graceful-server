@@ -46,34 +46,74 @@
   "publishConfig": {
     "imports": {
       "#config/*": {
-        "types": "./lib/config/*.d.ts",
-        "require": "./lib/config/*.cjs",
-        "import": "./lib/config/*.mjs",
-        "default": "./lib/config/*.mjs"
+        "require": {
+          "types": "./lib/config/*.d.ts",
+          "default": "./lib/config/*.cjs"
+        },
+        "import": {
+          "types": "./lib/config/*.d.ts",
+          "default": "./lib/config/*.mjs"
+        },
+        "default": {
+          "types": "./lib/config/*.d.ts",
+          "default": "./lib/config/*.mjs"
+        }
       },
       "#constants/*": {
-        "types": "./lib/config/*.d.ts",
-        "require": "./lib/constants/*.cjs",
-        "import": "./lib/constants/*.mjs",
-        "default": "./lib/constants/*.mjs"
+        "require": {
+          "types": "./lib/constants/*.d.ts",
+          "default": "./lib/constants/*.cjs"
+        },
+        "import": {
+          "types": "./lib/constants/*.d.ts",
+          "default": "./lib/constants/*.mjs"
+        },
+        "default": {
+          "types": "./lib/constants/*.d.ts",
+          "default": "./lib/constants/*.mjs"
+        }
       },
       "#core/*": {
-        "types": "./lib/core/*.d.ts",
-        "require": "./lib/core/*.cjs",
-        "import": "./lib/core/*.mjs",
-        "default": "./lib/core/*.mjs"
+        "require": {
+          "types": "./lib/core/*.d.ts",
+          "default": "./lib/core/*.cjs"
+        },
+        "import": {
+          "types": "./lib/core/*.d.ts",
+          "default": "./lib/core/*.mjs"
+        },
+        "default": {
+          "types": "./lib/core/*.d.ts",
+          "default": "./lib/core/*.mjs"
+        }
       },
       "#interface/*": {
-        "types": "./lib/interface/*.d.ts",
-        "require": "./lib/interface/*.cjs",
-        "import": "./lib/interface/*.mjs",
-        "default": "./lib/interface/*.mjs"
+        "require": {
+          "types": "./lib/interface/*.d.ts",
+          "default": "./lib/interface/*.cjs"
+        },
+        "import": {
+          "types": "./lib/interface/*.d.ts",
+          "default": "./lib/interface/*.mjs"
+        },
+        "default": {
+          "types": "./lib/interface/*.d.ts",
+          "default": "./lib/interface/*.mjs"
+        }
       },
       "#util/*": {
-        "types": "./lib/util/*.d.ts",
-        "require": "./lib/util/*.cjs",
-        "import": "./lib/util/*.mjs",
-        "default": "./lib/util/*.mjs"
+        "require": {
+          "types": "./lib/util/*.d.ts",
+          "default": "./lib/util/*.cjs"
+        },
+        "import": {
+          "types": "./lib/util/*.d.ts",
+          "default": "./lib/util/*.mjs"
+        },
+        "default": {
+          "types": "./lib/util/*.d.ts",
+          "default": "./lib/util/*.mjs"
+        }
       }
     }
   },
