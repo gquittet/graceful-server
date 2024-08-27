@@ -7,7 +7,7 @@
   "homepage": "https://github.com/gquittet/graceful-server#readme",
   "repository": {
     "type": "git",
-    "url": "git@https://github.com/gquittet/graceful-server.git"
+    "url": "git+https://github.com/gquittet/graceful-server.git"
   },
   "bugs": {
     "email": "guillaume.quittet@gmail.com",
