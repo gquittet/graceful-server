@@ -3,7 +3,6 @@
 import eslint from "@eslint/js";
 import eslintSecurity from "eslint-plugin-security";
 import eslintSimpleImportSort from "eslint-plugin-simple-import-sort";
-import eslintSonar from "eslint-plugin-sonarjs";
 import eslintConfigPrettier from "eslint-config-prettier";
 import eslintUnusedImport from "eslint-plugin-unused-imports";
 import tsEslint from "typescript-eslint";
@@ -14,7 +13,6 @@ export default tsEslint.config(
   eslint.configs.recommended,
   ...tsEslint.configs.recommended,
   eslintSecurity.configs.recommended,
-  eslintSonar.configs.recommended,
   eslintConfigPrettier,
   {
     files: ["src/**/*"],
