@@ -24,7 +24,7 @@
 </p>
 
 <p align="center">
-  Tiny (~5k), KISS, dependency-free Node.JS library to make your Rest API graceful.
+  Tiny (~5k), KISS, dependency-free Node.js library to make your Rest API graceful.
 </p>
 
 ---
@@ -48,7 +48,7 @@
 
 ## Features
 
-✔ It's listening system events to gracefully close your API on interruption.
+✔ It's listening to system events to gracefully close your API on interruption.
 
 ✔ It facilitates the disconnect of data sources on shutdown.
 
@@ -56,7 +56,7 @@
 
 ✔ It manages the connections of your API.
 
-✔ It avoid boilerplate codes.
+✔ It avoids boilerplate codes.
 
 ✔ Kubernetes compliant.
 
@@ -90,7 +90,7 @@ yarn add @gquittet/graceful-server
 
 ## Endpoint
 
-Below you can find the default endpoint but you can setup or disable them. To do that, check out the [Options](#options) part.
+Below, you can find the default endpoint, but you can set up or disable them. To do that, check out the [Options](#options) part.
 
 <a name="lightship-behaviour-live"></a>
 
@@ -118,7 +118,7 @@ The endpoint responds:
 { "status": "ready" }
 ```
 
-- `503` status code with an empty response if the server is not ready (started, shutting down, etc).
+- `503` status code with an empty response if the server is not ready (started, shutting down, etc.).
 
 ## Example
 
