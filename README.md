@@ -18,6 +18,9 @@
   <a href="https://www.npmjs.com/package/@gquittet/graceful-server" target="_blank" rel="noopener">
     <img src="https://img.shields.io/npm/dw/@gquittet/graceful-server" alt="npmjs download">
   </a>
+  <a href="https://dependents.info/gquittet/graceful-server" target="_blank" rel="noopener">
+    <img src="https://dependents.info/gquittet/graceful-server/badge" alt="network dependents" />
+  </a>
   <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=JN3XLTQCX3NR8&source=url" target="_blank" rel="noopener">
     <img src="https://img.shields.io/badge/Donate-PayPal-green.svg" alt="Donate with PayPal">
   </a>
@@ -30,6 +33,7 @@
 ---
 
 - [Features](#features)
+- [Used by](#used-by)
 - [Requirements](#requirements)
 - [Installation](#installation)
   - [NPM](#npm)
@@ -63,6 +67,12 @@
 ✔ Dependency-free.
 
 ✔ KISS code base.
+
+## Used by
+
+<a href="https://dependents.info/gquittet/graceful-server" target="_blank" rel="noopener">
+  <img src="https://dependents.info/gquittet/graceful-server/image" alt="network dependents" />
+</a>
 
 ## Requirements
 
