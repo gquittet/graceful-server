@@ -8,7 +8,7 @@ export default defineConfig({
   outExtension: ctx => {
     return { js: ctx.format === 'esm' ? ".mjs" : ".cjs" };
   },
-  target: "node18",
+  target: "node20",
   tsconfig: "tsconfig.prod.json",
   bundle: false,
   minify: true,

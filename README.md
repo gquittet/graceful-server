@@ -66,7 +66,7 @@
 
 ## Requirements
 
-✔ NodeJS >= 18.0
+✔ NodeJS >= 20.0
 
 ## Installation
 
