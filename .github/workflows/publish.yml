@@ -7,12 +7,14 @@ on:
   release:
     types: [published]
 
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
   publish-npm:
     runs-on: ubuntu-24.04
-    permissions:
-      contents: read
-      id-token: write
+
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
@@ -20,13 +22,10 @@ jobs:
           version: 10
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 24
           cache: 'pnpm'
           registry-url: https://registry.npmjs.org/
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
       - name: Publish package
-        run: pnpm publish --provenance --access public --no-git-checks
-        env:
-          NPM_CONFIG_PROVENANCE: true
-          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
+        run: pnpm publish --access public --no-git-checks
