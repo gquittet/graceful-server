@@ -88,6 +88,30 @@ describe("status", () => {
     });
   });
 
+  describe("isShuttingDown", () => {
+    it("should return false when status is STARTING", () => {
+      const eventEmitter = new EventEmitter();
+      const status = Status(eventEmitter);
+      expect(status.isShuttingDown()).toBe(false);
+    });
+    it("should return true when status is SHUTTING_DOWN", () => {
+      const eventEmitter = new EventEmitter();
+      const status = Status(eventEmitter);
+
+      status.set(State.SHUTTING_DOWN);
+
+      expect(status.isShuttingDown()).toBe(true);
+    });
+    it("should return false when status is SHUTDOWN", () => {
+      const eventEmitter = new EventEmitter();
+      const status = Status(eventEmitter);
+
+      status.set(State.SHUTDOWN);
+
+      expect(status.isShuttingDown()).toBe(false);
+    });
+  });
+
   describe("set", () => {
     it("should change the status", () => {
       expect.assertions(1);

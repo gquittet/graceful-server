@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import defaultConfig from "#config/index";
+import defaultConfig, { makeOptions } from "#config/index";
 
 describe("config", () => {
   it("should have a an empty array of promises to run on close", () => {
@@ -37,5 +37,33 @@ describe("config", () => {
     expect.assertions(1);
     const { readinessEndpoint } = defaultConfig;
     expect(readinessEndpoint).toBe("/ready");
+  });
+
+  describe("makeOptions", () => {
+    it("should override defaults with provided options", () => {
+      expect.assertions(6);
+      makeOptions({ timeout: 5000, healthCheck: false, kubernetes: true });
+
+      expect(defaultConfig.timeout).toBe(5000);
+      expect(defaultConfig.healthCheck).toBe(false);
+      expect(defaultConfig.kubernetes).toBe(true);
+      expect(defaultConfig.syncClose).toBe(false);
+      expect(defaultConfig.livenessEndpoint).toBe("/live");
+      expect(defaultConfig.readinessEndpoint).toBe("/ready");
+    });
+
+    it("should not allow overriding after first call", () => {
+      expect.assertions(1);
+      makeOptions({ timeout: 2000 });
+
+      expect(defaultConfig.timeout).toBe(5000);
+    });
+
+    it("should return the options object", () => {
+      expect.assertions(1);
+      const result = makeOptions({ syncClose: true });
+
+      expect(result).toBe(defaultConfig);
+    });
   });
 });
