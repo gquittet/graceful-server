@@ -8,10 +8,8 @@ import State from "#core/state";
 import onRequest from "#util/onRequest";
 import sleep from "#util/sleep";
 
-const { livenessEndpoint, readinessEndpoint } = config;
-
 const improvedServer = <TServer extends Server>(server: TServer, serverStatus: IStatus) => {
-  const { healthCheck, kubernetes } = config;
+  const { healthCheck, kubernetes, livenessEndpoint, readinessEndpoint } = config;
   const socketsPool = SocketsPool();
   const secureSocketsPool = SocketsPool();
   let stopping = false;
