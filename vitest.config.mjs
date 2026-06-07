@@ -1,4 +1,4 @@
-import { defineConfig } from "vitest/config";
+import { defineConfig, defaultExclude } from "vitest/config";
 
 // noinspection JSUnusedGlobalSymbols
 export default defineConfig({
@@ -6,5 +6,6 @@ export default defineConfig({
     coverage: {
       reporter: ["json", "lcov", "text", "html", "cobertura"],
     },
+    exclude: [...defaultExclude, "src/integration/**"],
   },
 });

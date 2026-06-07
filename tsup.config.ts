@@ -2,7 +2,7 @@ import { defineConfig } from "tsup";
 
 // noinspection JSUnusedGlobalSymbols
 export default defineConfig({
-  entry: ["./src/**/*.ts", "!./src/**/*.test.ts"],
+  entry: ["./src/**/*.ts", "!./src/**/*.test.ts", "!./src/integration/**"],
   format: ["esm", "cjs"],
   outDir: "./lib",
   outExtension: ctx => {

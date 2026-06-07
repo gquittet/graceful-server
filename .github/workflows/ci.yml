@@ -24,7 +24,9 @@ jobs:
         run: pnpm install
       - name: Lint code base
         run: pnpm run lint
-      - name: Run tests
+      - name: Run unit tests
         run: pnpm run coverage
+      - name: Run integration tests
+        run: pnpm run test:integration
       - name: Build the project
         run: pnpm run build

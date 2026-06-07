@@ -121,9 +121,10 @@
     "build": "tsup --onSuccess='tsc -p tsconfig.prod.json --emitDeclarationOnly --declaration'",
     "lint": "eslint",
     "test": "vitest",
+    "test:integration": "vitest run --config vitest.integration.config.mjs",
     "coverage": "vitest run --coverage",
-    "preversion": "pnpm lint && pnpm coverage && pnpm build && publint --strict",
-    "prepublish": "pnpm lint && pnpm coverage && pnpm build && publint --strict"
+    "preversion": "pnpm lint && pnpm coverage && pnpm test:integration && pnpm build && publint --strict",
+    "prepublish": "pnpm lint && pnpm coverage && pnpm test:integration && pnpm build && publint --strict"
   },
   "optionalDependencies": {
     "fsevents": "^2.3.3"
