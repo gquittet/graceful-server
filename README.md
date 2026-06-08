@@ -154,13 +154,9 @@ See: [KUBERNETES.md](./docs/KUBERNETES.md)
 
 ★ [Cloud Health Connect](https://github.com/CloudNativeJS/cloud-health-connect)
 
-## Sponsors
+## Powered by
 
-<a href="https://jb.gg/OpenSource" target="_blank">
-
-![JetBrains Logo](assets/sponsors/jetbrains.svg)
-
-</a>
+[![JetBrains logo.](https://resources.jetbrains.com/storage/products/company/brand/logos/jetbrains.svg)](https://jb.gg/OpenSource)
 
 ## Donate
 
