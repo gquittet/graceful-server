@@ -42,28 +42,30 @@ describe("config", () => {
   describe("makeOptions", () => {
     it("should override defaults with provided options", () => {
       expect.assertions(6);
-      makeOptions({ timeout: 5000, healthCheck: false, kubernetes: true });
+      const opts = makeOptions({ timeout: 5000, healthCheck: false, kubernetes: true });
 
-      expect(defaultConfig.timeout).toBe(5000);
-      expect(defaultConfig.healthCheck).toBe(false);
-      expect(defaultConfig.kubernetes).toBe(true);
-      expect(defaultConfig.syncClose).toBe(false);
-      expect(defaultConfig.livenessEndpoint).toBe("/live");
-      expect(defaultConfig.readinessEndpoint).toBe("/ready");
+      expect(opts.timeout).toBe(5000);
+      expect(opts.healthCheck).toBe(false);
+      expect(opts.kubernetes).toBe(true);
+      expect(opts.syncClose).toBe(false);
+      expect(opts.livenessEndpoint).toBe("/live");
+      expect(opts.readinessEndpoint).toBe("/ready");
     });
 
-    it("should not allow overriding after first call", () => {
+    it("should return a frozen object", () => {
       expect.assertions(1);
-      makeOptions({ timeout: 2000 });
+      const opts = makeOptions({ timeout: 2000 });
 
-      expect(defaultConfig.timeout).toBe(5000);
+      expect(Object.isFrozen(opts)).toBe(true);
     });
 
-    it("should return the options object", () => {
-      expect.assertions(1);
-      const result = makeOptions({ syncClose: true });
+    it("should return a new object each call", () => {
+      expect.assertions(2);
+      const opts1 = makeOptions({ timeout: 5000 });
+      const opts2 = makeOptions({ timeout: 2000 });
 
-      expect(result).toBe(defaultConfig);
+      expect(opts1).not.toBe(opts2);
+      expect(opts2.timeout).toBe(2000);
     });
   });
 });

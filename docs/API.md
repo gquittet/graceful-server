@@ -27,6 +27,8 @@ All of the below options are optional.
 | kubernetes        |          boolean           |  false  |                               Enable/Disable the kubernetes mode |
 | livenessEndpoint  |           string           |  /live  |                                            The liveness endpoint |
 | readinessEndpoint |           string           | /ready  |                                           The readiness endpoint |
+| livenessCheck     | () => Promise\<HealthCheckResult\> | undefined | Custom callback for liveness check. Return `{ alive: false }` to respond 503 |
+| readinessCheck    | () => Promise\<HealthCheckResult\> | undefined | Custom callback for readiness check. Return `{ ready: false }` to respond 503 |
 
 If you use Kubernetes, enable the kubernetes mode to let it handles the incoming traffic of your application.
 

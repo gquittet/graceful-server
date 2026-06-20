@@ -1,3 +1,5 @@
+export type HealthCheckResult = { alive?: boolean } | { ready?: boolean } | void;
+
 export type IGracefulServerOptions = {
   syncClose?: boolean;
   closePromises?: (() => Promise<unknown>)[];
@@ -6,4 +8,6 @@ export type IGracefulServerOptions = {
   kubernetes?: boolean;
   livenessEndpoint?: string;
   readinessEndpoint?: string;
+  livenessCheck?: () => Promise<HealthCheckResult>;
+  readinessCheck?: () => Promise<HealthCheckResult>;
 };

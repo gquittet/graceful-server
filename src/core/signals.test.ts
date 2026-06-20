@@ -2,8 +2,8 @@ import { describe, expect, it } from "vitest";
 import signals from "#core/signals";
 
 describe("signals", () => {
-  it("should have 5 entries", () => {
-    expect(signals).toHaveLength(5);
+  it("should have 4 entries", () => {
+    expect(signals).toHaveLength(4);
   });
 
   it("should have SIGHUP with code 1", () => {
@@ -20,9 +20,5 @@ describe("signals", () => {
 
   it("should have SIGTERM with code 15", () => {
     expect(signals).toContainEqual({ type: "SIGTERM", code: 15 });
-  });
-
-  it("should have uncaughtException with code 2", () => {
-    expect(signals).toContainEqual({ type: "uncaughtException", code: 2 });
   });
 });

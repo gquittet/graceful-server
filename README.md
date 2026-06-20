@@ -64,6 +64,10 @@
 
 ✔ KISS code base.
 
+✔ Custom health check callbacks for advanced liveness/readiness logic.
+
+✔ Multiple instances support (no more singleton).
+
 ## Requirements
 
 ✔ NodeJS >= 20.0

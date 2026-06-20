@@ -1,15 +1,26 @@
+import type { IOptions } from "#interface/options";
 import type { Server } from "#interface/server";
 import type { IStatus } from "#interface/status";
 import type http from "node:http";
 import { exit } from "node:process";
-import config from "#config/index";
 import SocketsPool from "#core/socketsPool";
 import State from "#core/state";
 import onRequest from "#util/onRequest";
 import sleep from "#util/sleep";
 
-const improvedServer = <TServer extends Server>(server: TServer, serverStatus: IStatus) => {
-  const { healthCheck, kubernetes, livenessEndpoint, readinessEndpoint } = config;
+const improvedServer = <TServer extends Server>(
+  server: TServer,
+  serverStatus: IStatus,
+  options: IOptions,
+) => {
+  const {
+    healthCheck,
+    kubernetes,
+    livenessEndpoint,
+    readinessEndpoint,
+    livenessCheck,
+    readinessCheck,
+  } = options;
   const socketsPool = SocketsPool();
   const secureSocketsPool = SocketsPool();
   let stopping = false;
@@ -25,7 +36,16 @@ const improvedServer = <TServer extends Server>(server: TServer, serverStatus: I
   // Setup the health check endpoints if health checks are enabled
   if (healthCheck) {
     // Add health checks endpoints
-    server.on("request", onRequest(serverStatus));
+    server.on(
+      "request",
+      onRequest({
+        serverStatus,
+        livenessEndpoint,
+        readinessEndpoint,
+        livenessCheck,
+        readinessCheck,
+      }),
+    );
 
     // Add the user listeners
     listeners.forEach((listener) =>
@@ -72,7 +92,7 @@ const improvedServer = <TServer extends Server>(server: TServer, serverStatus: I
 
     stopping = true;
 
-    const { timeout, closePromises, syncClose } = config;
+    const { timeout, closePromises, syncClose } = options;
 
     let error: Error | undefined;
     if (args.body && args.body.message) {
@@ -100,17 +120,19 @@ const improvedServer = <TServer extends Server>(server: TServer, serverStatus: I
 
     await Promise.allSettled([socketsPool.closeAll(), secureSocketsPool.closeAll()]);
 
-    await new Promise((resolve, reject) => {
-      server.close((err) => {
-        if (err) {
-          return reject(err);
-        }
-        return resolve(error);
+    try {
+      await new Promise<void>((resolve, reject) => {
+        server.close((err) => {
+          if (err) {
+            return reject(err);
+          }
+          return resolve();
+        });
       });
-
+    } finally {
       serverStatus.set(State.SHUTDOWN, error);
       exit(args.value);
-    });
+    }
   };
 
   return Object.assign(server, { stop });

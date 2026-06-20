@@ -1,14 +1,15 @@
 import type { ICore } from "#interface/core";
+import type { IOptions } from "#interface/options";
 import type { Server } from "#interface/server";
 import { EventEmitter } from "events";
 import ImprovedServer from "#core/improvedServer";
 import Status from "#core/status";
 import init from "#util/init";
 
-const core = (server: Server): ICore => {
+const core = (server: Server, options: IOptions): ICore => {
   const _emitter = new EventEmitter();
   const status = Status(_emitter);
-  const _server = ImprovedServer(server, status);
+  const _server = ImprovedServer(server, status, options);
   return {
     status,
     init: function () {

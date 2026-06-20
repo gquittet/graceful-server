@@ -6,8 +6,8 @@ import GracefulServerCore from "#core/index";
 import State from "#core/state";
 
 const buildGracefulServer = (server: Server, options?: IGracefulServerOptions): IGracefulServer => {
-  makeOptions(options);
-  const gracefulServer = GracefulServerCore(server).init();
+  const opts = makeOptions(options);
+  const gracefulServer = GracefulServerCore(server, opts).init();
   return {
     isReady: () => gracefulServer.status.isReady(),
     setReady: () => gracefulServer.status.setReady(),
@@ -19,5 +19,7 @@ const buildGracefulServer = (server: Server, options?: IGracefulServerOptions): 
 const GracefulServer = Object.assign(buildGracefulServer, State);
 
 export * from "#interface/gracefulServer";
+export * from "#interface/gracefulServerOptions";
+export * from "#interface/options";
 
 export default GracefulServer;

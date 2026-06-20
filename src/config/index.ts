@@ -1,7 +1,7 @@
 import type { IGracefulServerOptions } from "#interface/gracefulServerOptions";
 import type { IOptions } from "#interface/options";
 
-const options: IOptions = {
+const DEFAULT_OPTIONS: IOptions = {
   syncClose: false,
   closePromises: [],
   timeout: 1000,
@@ -9,15 +9,13 @@ const options: IOptions = {
   kubernetes: false,
   livenessEndpoint: "/live",
   readinessEndpoint: "/ready",
-};
-let canOverride = true;
-
-export const makeOptions = (newOptions?: IGracefulServerOptions) => {
-  if (canOverride) {
-    Object.freeze(Object.assign(options, newOptions));
-    canOverride = false;
-  }
-  return options;
+  livenessCheck: undefined,
+  readinessCheck: undefined,
 };
 
-export default options;
+export const makeOptions = (newOptions?: IGracefulServerOptions): IOptions => {
+  const merged = { ...DEFAULT_OPTIONS, ...newOptions };
+  return Object.freeze(merged);
+};
+
+export default DEFAULT_OPTIONS;
