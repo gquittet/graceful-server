@@ -13,6 +13,7 @@
     "noFallthroughCasesInSwitch": true,
     "forceConsistentCasingInFileNames": true,
     "verbatimModuleSyntax": true,
+    "types": ["node"],
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "lib"],
